@@ -18,3 +18,8 @@ func _on_collision_timer_timeout() -> void:
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	sprite.play("default")
+
+
+func _on_despawn_timer_timeout() -> void:
+	get_parent().remove_child(self)
+	queue_free()
