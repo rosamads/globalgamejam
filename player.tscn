@@ -1,10 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0q4qna0bdrrh"]
+[gd_scene load_steps=6 format=3 uid="uid://b0q4qna0bdrrh"]
+
+[ext_resource type="Texture2D" uid="uid://d0mr3gnoxevd6" path="res://Graphics/Character/Idle/player.png" id="1_6nyc0"]
+[ext_resource type="Texture2D" uid="uid://bv7nkdguryw4v" path="res://Graphics/Character/Idle/idle_2.png" id="2_kuavt"]
+[ext_resource type="Texture2D" uid="uid://dp5fu665ncx8g" path="res://Graphics/Character/Idle/idle_1.png" id="4_fx45e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y52w3"]
+animations = [{
+"frames": [{
+"duration": 0.8,
+"texture": ExtResource("1_6nyc0")
+}, {
+"duration": 0.8,
+"texture": ExtResource("2_kuavt")
+}, {
+"duration": 0.8,
+"texture": ExtResource("4_fx45e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vq2bk"]
 
 [node name="Player" type="CharacterBody2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1.25, -0.249999)
+scale = Vector2(0.460938, 0.460938)
+sprite_frames = SubResource("SpriteFrames_y52w3")
+frame_progress = 0.525177
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_vq2bk")
