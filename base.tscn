@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://duhgwgqbvxd11"]
+
+[ext_resource type="Script" path="res://Scripts/base.gd" id="1_a2tob"]
+[ext_resource type="PackedScene" uid="uid://b0q4qna0bdrrh" path="res://player.tscn" id="1_xlit0"]
+[ext_resource type="PackedScene" uid="uid://bx0wv0v3vry1g" path="res://test_level.tscn" id="2_i8bcu"]
+
+[node name="Base" type="Node"]
+script = ExtResource("1_a2tob")
+
+[node name="Player" parent="." instance=ExtResource("1_xlit0")]
+
+[node name="TestLevel" parent="." instance=ExtResource("2_i8bcu")]
+
+[node name="MainCam" type="Camera2D" parent="."]
