@@ -11,6 +11,7 @@ const FRICTION = 1000
 const TOP_SPEED = 700.0
 const JUMP_VELOCITY = -500.0
 const TURN_AROUND_MULTIPLIER = 4
+const yote_time_start = 0.23
 
 const BUBBLE_VEL_OFFSET = 200
 const BUBBLE_VEL_SLOW = 900
@@ -20,6 +21,8 @@ var jump_buff_timer: Timer
 var jump_buffered = false
 var bubbled = false
 var last_dir = 0
+var can_yote = false
+var yote_timer = 0
 
 
 func _ready() -> void:
@@ -48,6 +51,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("aim_left") and not bubbled and not animation_playing:
 		sprite.speed_scale = 1
 		sprite.flip_h = true
+		last_dir = -1
 		sprite.offset.x = -4
 		sprite.play("attack")
 		animation_playing = animation_playing + 1
@@ -56,6 +60,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("aim_right") and not bubbled and not animation_playing:
 		sprite.speed_scale = 1
 		sprite.flip_h = false
+		last_dir = 1
 		sprite.offset.x = 0
 		sprite.play("attack")
 		animation_playing = animation_playing + 1
@@ -73,23 +78,30 @@ func _physics_process(delta: float) -> void:
 	
 	# Add the gravity.
 	if not is_on_floor():
+		yote_timer -= delta
+		if yote_timer <= 0:
+			can_yote = false
 		if animation_playing < 1:
 			sprite.speed_scale = 1
 			sprite.play("fall")
 		velocity += get_gravity() * delta
+	else:
+		can_yote = true
+		yote_timer = yote_time_start
 
 	# Buffer jump.
 	if Input.is_action_just_pressed("jump"):
-		if animation_playing < 1 and is_on_floor():
-			animation_playing = animation_playing + 1
-			sprite.speed_scale = 1
-			sprite.play("jump")
 		jump_buffered = true
 		jump_buff_timer.start()
 	
 	# Handle jump.
-	if Input.is_action_pressed("jump") and is_on_floor() and jump_buffered:
+	if Input.is_action_pressed("jump") and can_yote and jump_buffered:
+		if animation_playing < 1:
+			animation_playing = animation_playing + 1
+			sprite.speed_scale = 1
+			sprite.play("jump")
 		jump_buffered = false
+		can_yote = false
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
