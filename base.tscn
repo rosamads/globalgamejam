@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b0q4qna0bdrrh" path="res://player.tscn" id="1_xlit0"]
 [ext_resource type="PackedScene" uid="uid://bx0wv0v3vry1g" path="res://test_level.tscn" id="2_i8bcu"]
 [ext_resource type="PackedScene" uid="uid://b2t1ig1p0mdiv" path="res://parallax.tscn" id="4_rvshl"]
+[ext_resource type="Texture2D" uid="uid://d0mr3gnoxevd6" path="res://Graphics/Character/Idle/player.png" id="4_vg8f2"]
 
 [node name="Base" type="Node"]
 script = ExtResource("1_a2tob")
@@ -28,13 +29,24 @@ use_top_left = true
 layout_mode = 2
 alignment = 1
 
+[node name="TextureRect" type="TextureRect" parent="MainCam/Menu/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_vg8f2")
+
 [node name="Title" type="Label" parent="MainCam/Menu/VBoxContainer"]
 layout_mode = 2
 text = "Welcome to bubble game yippie"
+horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="MainCam/Menu/VBoxContainer"]
+[node name="Instructions" type="Label" parent="MainCam/Menu/VBoxContainer"]
 layout_mode = 2
 text = "Press start to toggle menu text, select to quit"
+horizontal_alignment = 1
+
+[node name="Controls" type="Label" parent="MainCam/Menu/VBoxContainer"]
+layout_mode = 2
+text = "L-stick or dpad to move, tap R-stick up/down/left/right to throw bubble, A/Cross to jump"
+horizontal_alignment = 1
 
 [node name="Entites" type="Node" parent="."]
 
