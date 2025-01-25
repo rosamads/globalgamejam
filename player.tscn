@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b0q4qna0bdrrh"]
+[gd_scene load_steps=19 format=3 uid="uid://b0q4qna0bdrrh"]
 
 [ext_resource type="Texture2D" uid="uid://d0mr3gnoxevd6" path="res://Graphics/Character/Idle/player.png" id="1_6nyc0"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_c2nyo"]
@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://6267tyqsmvr5" path="res://Graphics/Character/Attack/attack_4.png" id="6_eo28m"]
 [ext_resource type="Texture2D" uid="uid://q77xdho8rr77" path="res://Graphics/Character/Running/run_3.png" id="7_0ympr"]
 [ext_resource type="Texture2D" uid="uid://bb7bk133m2lj7" path="res://Graphics/Character/Running/walk_4.png" id="8_7kplj"]
+[ext_resource type="Texture2D" uid="uid://dycnnfdewnkcy" path="res://Graphics/Character/Air/jump.png" id="10_eolu4"]
+[ext_resource type="Texture2D" uid="uid://c71hqjt6wqc5c" path="res://Graphics/Character/Air/jump_1.png" id="11_34nqg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y52w3"]
 animations = [{
@@ -53,6 +55,25 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("11_34nqg")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.4,
+"texture": ExtResource("10_eolu4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_34nqg")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("4_cntv3")
 }, {
 "duration": 1.0,
@@ -88,8 +109,7 @@ texture_filter = 1
 position = Vector2(6, 0)
 scale = Vector2(1.89063, 1.89063)
 sprite_frames = SubResource("SpriteFrames_y52w3")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+animation = &"jump"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4.5, 0.5)

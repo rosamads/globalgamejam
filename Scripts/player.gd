@@ -4,7 +4,7 @@ signal spawn_bubble(position: Vector2, velocity: Vector2)
 
 @onready var sprite = $AnimatedSprite2D
 var bubble_ready = false
-var animation_playing = false
+var animation_playing = 0
 
 const ACCEL = 1000
 const FRICTION = 1000
@@ -29,13 +29,13 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("aim_up") and not bubbled and not animation_playing:
 		sprite.speed_scale = 1
 		sprite.play("attack")
-		animation_playing = true
+		animation_playing = animation_playing + 1
 		spawn_bubble.emit(position, velocity + Vector2(BUBBLE_VEL_SLOW,-BUBBLE_VEL_OFFSET))
 		bubbled = true
 	if Input.is_action_just_pressed("aim_down") and not bubbled and not animation_playing:
 		sprite.speed_scale = 1
 		sprite.play("attack")
-		animation_playing = true
+		animation_playing = animation_playing + 1
 		spawn_bubble.emit(position, velocity + Vector2(BUBBLE_VEL_SLOW,BUBBLE_VEL_OFFSET))
 		bubbled = true
 	if Input.is_action_just_pressed("aim_left") and not bubbled and not animation_playing:
@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 		sprite.flip_h = true
 		sprite.offset.x = -4
 		sprite.play("attack")
-		animation_playing = true
+		animation_playing = animation_playing + 1
 		spawn_bubble.emit(position, velocity + Vector2(-BUBBLE_VEL_FAST,0))
 		bubbled = true
 	if Input.is_action_just_pressed("aim_right") and not bubbled and not animation_playing:
@@ -51,7 +51,7 @@ func _physics_process(delta: float) -> void:
 		sprite.flip_h = false
 		sprite.offset.x = 0
 		sprite.play("attack")
-		animation_playing = true
+		animation_playing = animation_playing + 1
 		spawn_bubble.emit(position, velocity + Vector2(BUBBLE_VEL_FAST,0))
 		bubbled = true
 	if not (Input.is_action_pressed("aim_up") or
@@ -66,10 +66,17 @@ func _physics_process(delta: float) -> void:
 	
 	# Add the gravity.
 	if not is_on_floor():
+		if animation_playing < 1:
+			sprite.speed_scale = 1
+			sprite.play("fall")
 		velocity += get_gravity() * delta
 
 	# Buffer jump.
 	if Input.is_action_just_pressed("jump"):
+		if animation_playing < 1 and is_on_floor():
+			animation_playing = animation_playing + 1
+			sprite.speed_scale = 1
+			sprite.play("jump")
 		jump_buffered = true
 		jump_buff_timer.start()
 	
@@ -87,7 +94,7 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, direction * TOP_SPEED, ACCEL * TURN_AROUND_MULTIPLIER * delta)
 
 		
-		if not animation_playing:
+		if animation_playing < 1 and is_on_floor():
 			if direction < 0:
 				sprite.flip_h = true
 				sprite.offset.x = -4
@@ -97,11 +104,13 @@ func _physics_process(delta: float) -> void:
 			sprite.play("run")
 			sprite.speed_scale = velocity.x/400
 		velocity.x = move_toward(velocity.x, direction * TOP_SPEED, ACCEL * delta)
+			
 	else:
-		if velocity.x == 0 and not animation_playing:
+		if velocity.x == 0 and animation_playing < 1 and is_on_floor():
 			sprite.speed_scale = 1
 			sprite.play("default")
 		velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
+		
 
 	move_and_slide()
 
@@ -111,4 +120,4 @@ func _on_jump_buff_timer_timeout() -> void:
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	animation_playing = false
+	animation_playing = 0
