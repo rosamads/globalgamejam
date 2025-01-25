@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-
+@onready var sprite = $AnimatedSprite2D
 const ACCEL = 1000
 const FRICTION = 800
 const TOP_SPEED = 1000.0
@@ -31,8 +31,17 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("move_left", "move_right")
 	if direction:
+		if direction < 0:
+			sprite.flip_h = true
+		else:
+			sprite.flip_h = false
+		sprite.play("run")
 		velocity.x = move_toward(velocity.x, direction * TOP_SPEED, ACCEL * delta)
+		sprite.speed_scale = velocity.x/400
 	else:
+		if velocity.x == 0:
+			sprite.speed_scale = 1
+			sprite.play("default")
 		velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
 
 	move_and_slide()
