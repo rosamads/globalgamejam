@@ -1,24 +1,52 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0q4qna0bdrrh"]
+[gd_scene load_steps=11 format=3 uid="uid://b0q4qna0bdrrh"]
 
 [ext_resource type="Texture2D" uid="uid://d0mr3gnoxevd6" path="res://Graphics/Character/Idle/player.png" id="1_6nyc0"]
 [ext_resource type="Texture2D" uid="uid://bv7nkdguryw4v" path="res://Graphics/Character/Idle/idle_2.png" id="2_kuavt"]
+[ext_resource type="Texture2D" uid="uid://bdhl5oqa8yykp" path="res://Graphics/Character/Running/run.png" id="4_cntv3"]
 [ext_resource type="Texture2D" uid="uid://dp5fu665ncx8g" path="res://Graphics/Character/Idle/idle_1.png" id="4_fx45e"]
+[ext_resource type="Texture2D" uid="uid://yuccwviiuvwy" path="res://Graphics/Character/Running/run_1.png" id="4_q0608"]
+[ext_resource type="Texture2D" uid="uid://dn62he4jcjbg3" path="res://Graphics/Character/Running/run_2.png" id="5_fh4js"]
+[ext_resource type="Texture2D" uid="uid://q77xdho8rr77" path="res://Graphics/Character/Running/run_3.png" id="7_0ympr"]
+[ext_resource type="Texture2D" uid="uid://bb7bk133m2lj7" path="res://Graphics/Character/Running/walk_4.png" id="8_7kplj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y52w3"]
 animations = [{
 "frames": [{
-"duration": 0.8,
+"duration": 0.6,
 "texture": ExtResource("1_6nyc0")
 }, {
-"duration": 0.8,
+"duration": 0.6,
 "texture": ExtResource("2_kuavt")
 }, {
-"duration": 0.8,
+"duration": 0.6,
 "texture": ExtResource("4_fx45e")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_cntv3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_q0608")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fh4js")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0ympr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_7kplj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fh4js")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vq2bk"]
@@ -30,7 +58,8 @@ texture_filter = 1
 position = Vector2(1.25, -0.249999)
 scale = Vector2(0.460938, 0.460938)
 sprite_frames = SubResource("SpriteFrames_y52w3")
-frame_progress = 0.525177
+animation = &"run"
+frame_progress = 0.522485
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_vq2bk")
