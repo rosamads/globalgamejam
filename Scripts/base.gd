@@ -22,6 +22,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("menu"):
+		$MainCam/Menu.visible = !$MainCam/Menu.visible
+	if Input.is_action_just_pressed("quit"):
+		get_tree().quit()
+	
 	if player.velocity.x != 0:
 		#cam x
 		var x_dir = 1 if player.velocity.x > 0 else -1
