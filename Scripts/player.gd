@@ -3,6 +3,8 @@ extends CharacterBody2D
 signal spawn_bubble(position: Vector2, velocity: Vector2)
 
 @onready var sprite = $AnimatedSprite2D
+var bubble_ready = false
+var animation_playing = false
 
 const ACCEL = 1000
 const FRICTION = 1000
@@ -24,16 +26,32 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	#bubbles
-	if Input.is_action_just_pressed("aim_up") and not bubbled:
+	if Input.is_action_just_pressed("aim_up") and not bubbled and not animation_playing:
+		sprite.speed_scale = 1
+		sprite.play("attack")
+		animation_playing = true
 		spawn_bubble.emit(position, velocity + Vector2(BUBBLE_VEL_SLOW,-BUBBLE_VEL_OFFSET))
 		bubbled = true
-	if Input.is_action_just_pressed("aim_down") and not bubbled:
+	if Input.is_action_just_pressed("aim_down") and not bubbled and not animation_playing:
+		sprite.speed_scale = 1
+		sprite.play("attack")
+		animation_playing = true
 		spawn_bubble.emit(position, velocity + Vector2(BUBBLE_VEL_SLOW,BUBBLE_VEL_OFFSET))
 		bubbled = true
-	if Input.is_action_just_pressed("aim_left") and not bubbled:
+	if Input.is_action_just_pressed("aim_left") and not bubbled and not animation_playing:
+		sprite.speed_scale = 1
+		sprite.flip_h = true
+		sprite.offset.x = -4
+		sprite.play("attack")
+		animation_playing = true
 		spawn_bubble.emit(position, velocity + Vector2(-BUBBLE_VEL_FAST,0))
 		bubbled = true
-	if Input.is_action_just_pressed("aim_right") and not bubbled:
+	if Input.is_action_just_pressed("aim_right") and not bubbled and not animation_playing:
+		sprite.speed_scale = 1
+		sprite.flip_h = false
+		sprite.offset.x = 0
+		sprite.play("attack")
+		animation_playing = true
 		spawn_bubble.emit(position, velocity + Vector2(BUBBLE_VEL_FAST,0))
 		bubbled = true
 	if not (Input.is_action_pressed("aim_up") or
@@ -68,15 +86,19 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, direction * TOP_SPEED, ACCEL * TURN_AROUND_MULTIPLIER * delta)
 
-		if direction < 0:
-			sprite.flip_h = true
-		else:
-			sprite.flip_h = false
-		sprite.play("run")
+		
+		if not animation_playing:
+			if direction < 0:
+				sprite.flip_h = true
+				sprite.offset.x = -4
+			else:
+				sprite.flip_h = false
+				sprite.offset.x = 0
+			sprite.play("run")
+			sprite.speed_scale = velocity.x/400
 		velocity.x = move_toward(velocity.x, direction * TOP_SPEED, ACCEL * delta)
-		sprite.speed_scale = velocity.x/400
 	else:
-		if velocity.x == 0:
+		if velocity.x == 0 and not animation_playing:
 			sprite.speed_scale = 1
 			sprite.play("default")
 		velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
@@ -86,3 +108,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_jump_buff_timer_timeout() -> void:
 	jump_buffered = false
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	animation_playing = false
