@@ -19,6 +19,11 @@ config/icon="res://Graphics/Character/goob.png"
 
 Singleton="*res://Scripts/Autoload/singleton.gd"
 
+[display]
+
+window/size/mode=3
+window/stretch/mode="canvas_items"
+
 [input]
 
 move_left={

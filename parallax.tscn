@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbpuef2ofewn7"]
+[gd_scene load_steps=4 format=3 uid="uid://b2t1ig1p0mdiv"]
 
 [ext_resource type="Texture2D" uid="uid://ca8umggne7a2y" path="res://Graphics/Environment/sky.png" id="1_itbkl"]
 [ext_resource type="Texture2D" uid="uid://bc1ocemnk5bjp" path="res://Graphics/Environment/clouds.png" id="2_io1ri"]
@@ -26,7 +26,7 @@ scale = Vector2(6.0616, 5.53227)
 texture = ExtResource("2_io1ri")
 
 [node name="Trees" type="ParallaxLayer" parent="."]
-motion_mirroring = Vector2(1200, 0)
+motion_mirroring = Vector2(1400, 0)
 
 [node name="PalmTrees" type="Sprite2D" parent="Trees"]
 texture_filter = 1
