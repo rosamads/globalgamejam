@@ -77,4 +77,5 @@ aim_right={
 
 [physics]
 
+common/physics_ticks_per_second=144
 2d/default_gravity=700.0
