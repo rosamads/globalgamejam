@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b0q4qna0bdrrh" path="res://player.tscn" id="1_xlit0"]
 [ext_resource type="PackedScene" uid="uid://bx0wv0v3vry1g" path="res://test_level.tscn" id="2_i8bcu"]
 [ext_resource type="Texture2D" uid="uid://d0mr3gnoxevd6" path="res://Graphics/Character/Idle/player.png" id="4_vg8f2"]
+[ext_resource type="PackedScene" uid="uid://bbpuef2ofewn7" path="res://parallax.tscn" id="4_rvshl"]
 
 [node name="Base" type="Node"]
 script = ExtResource("1_a2tob")
@@ -48,3 +49,5 @@ text = "L-stick or dpad to move, tap R-stick up/down/left/right to throw bubble,
 horizontal_alignment = 1
 
 [node name="Entites" type="Node" parent="."]
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("4_rvshl")]
