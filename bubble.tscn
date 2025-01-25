@@ -1,12 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cn4piknxrksmt"]
+[gd_scene load_steps=8 format=3 uid="uid://cn4piknxrksmt"]
 
 [ext_resource type="Script" path="res://Scripts/bubble.gd" id="1_bsqu1"]
 [ext_resource type="Texture2D" uid="uid://4w8k16w0v35t" path="res://Graphics/Objects/Bubble/bubble_3.png" id="2_7lm7a"]
 [ext_resource type="Texture2D" uid="uid://ctrrwn73stq7h" path="res://Graphics/Objects/Bubble/bubble.png" id="3_w8bti"]
 [ext_resource type="Texture2D" uid="uid://13k7bstrl4y8" path="res://Graphics/Objects/Bubble/bubble_1.png" id="4_di1ji"]
 [ext_resource type="Texture2D" uid="uid://ch2ogqkdm7kn8" path="res://Graphics/Objects/Bubble/bubble_2.png" id="5_2xd4l"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_12wvn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l4lkx"]
 size = Vector2(60, 49.5)
@@ -43,12 +41,6 @@ animations = [{
 collision_layer = 0
 script = ExtResource("1_bsqu1")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-9.53674e-07, 1.43051e-06)
-scale = Vector2(40, 40)
-texture = SubResource("PlaceholderTexture2D_12wvn")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_l4lkx")
@@ -67,6 +59,11 @@ animation = &"spawn"
 frame = 3
 frame_progress = 1.0
 
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
 [node name="BubbleDelayTimer" type="Timer" parent="."]
 wait_time = 0.28
 one_shot = true
@@ -74,4 +71,5 @@ autostart = true
 
 [connection signal="timeout" from="CollisionTimer" to="." method="_on_collision_timer_timeout"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
 [connection signal="timeout" from="BubbleDelayTimer" to="." method="_on_bubble_delay_timer_timeout"]

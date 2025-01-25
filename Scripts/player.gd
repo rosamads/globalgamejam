@@ -19,6 +19,7 @@ const BUBBLE_VEL_FAST = 1000
 var jump_buff_timer: Timer
 var jump_buffered = false
 var bubbled = false
+var last_dir = 0
 
 
 func _ready() -> void:
@@ -30,13 +31,19 @@ func _physics_process(delta: float) -> void:
 		sprite.speed_scale = 1
 		sprite.play("attack")
 		animation_playing = animation_playing + 1
-		spawn_bubble.emit(position, velocity + Vector2(BUBBLE_VEL_SLOW,-BUBBLE_VEL_OFFSET))
+		if last_dir < 0:
+			spawn_bubble.emit(position, velocity + Vector2(-BUBBLE_VEL_SLOW,-BUBBLE_VEL_OFFSET))
+		else:
+			spawn_bubble.emit(position, velocity + Vector2(BUBBLE_VEL_SLOW,-BUBBLE_VEL_OFFSET))
 		bubbled = true
 	if Input.is_action_just_pressed("aim_down") and not bubbled and not animation_playing:
 		sprite.speed_scale = 1
 		sprite.play("attack")
 		animation_playing = animation_playing + 1
-		spawn_bubble.emit(position, velocity + Vector2(BUBBLE_VEL_SLOW,BUBBLE_VEL_OFFSET))
+		if last_dir < 0:
+			spawn_bubble.emit(position, velocity + Vector2(-BUBBLE_VEL_SLOW,BUBBLE_VEL_OFFSET))
+		else:
+			spawn_bubble.emit(position, velocity + Vector2(BUBBLE_VEL_SLOW,BUBBLE_VEL_OFFSET))
 		bubbled = true
 	if Input.is_action_just_pressed("aim_left") and not bubbled and not animation_playing:
 		sprite.speed_scale = 1
@@ -88,6 +95,7 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("move_left", "move_right")
 	if direction:
+		last_dir = direction
 		if direction * velocity.x >= 0:
 			velocity.x = move_toward(velocity.x, direction * TOP_SPEED, ACCEL * delta)
 		else:

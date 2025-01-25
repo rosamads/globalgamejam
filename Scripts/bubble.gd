@@ -21,6 +21,10 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	sprite.play("default")
 
 
+func _on_despawn_timer_timeout() -> void:
+	get_parent().remove_child(self)
+	queue_free()
+
 func _on_bubble_delay_timer_timeout() -> void:
 	visible = true
 	sprite.play("spawn")
