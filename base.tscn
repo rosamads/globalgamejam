@@ -12,3 +12,5 @@ script = ExtResource("1_a2tob")
 [node name="TestLevel" parent="." instance=ExtResource("2_i8bcu")]
 
 [node name="MainCam" type="Camera2D" parent="."]
+
+[node name="Entites" type="Node" parent="."]

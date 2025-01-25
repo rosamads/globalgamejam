@@ -7,12 +7,17 @@ const look_ahead_multiplier = 100
 
 var maincam: Camera2D
 var player: CharacterBody2D
+var entities: Node
+var bubble_tscn = preload("res://bubble.tscn")
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player = $Player
 	maincam = $MainCam
+	entities = $Entites
+	
+	player.spawn_bubble.connect(_spawn_bubble)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,3 +41,9 @@ func _process(delta: float) -> void:
 	else:
 		maincam.position.y = move_toward(maincam.position.y,
 			player.position.y, cam_reset_speed * delta)
+
+func _spawn_bubble(position, velocity):
+	var instance = bubble_tscn.instantiate()
+	instance.position = position
+	instance.velocity = velocity
+	entities.add_child(instance)
