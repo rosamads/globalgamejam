@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhk5p48hp04u8"
-path="res://.godot/imported/goob.png-4d9d582c1c928df8df2929177b8ca812.ctex"
+uid="uid://4w8k16w0v35t"
+path="res://.godot/imported/bubble_3.png-2d59ebb7e474fbd3cb9b3fcaf8f5f183.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Character/goob.png"
-dest_files=["res://.godot/imported/goob.png-4d9d582c1c928df8df2929177b8ca812.ctex"]
+source_file="res://Graphics/Objects/Bubble/bubble_3.png"
+dest_files=["res://.godot/imported/bubble_3.png-2d59ebb7e474fbd3cb9b3fcaf8f5f183.ctex"]
 
 [params]
 

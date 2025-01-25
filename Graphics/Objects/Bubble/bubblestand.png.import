@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhk5p48hp04u8"
-path="res://.godot/imported/goob.png-4d9d582c1c928df8df2929177b8ca812.ctex"
+uid="uid://c580k2kvd45yw"
+path="res://.godot/imported/bubblestand.png-ed55cb4bbb2a4e7452bc202c0e0903fe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Character/goob.png"
-dest_files=["res://.godot/imported/goob.png-4d9d582c1c928df8df2929177b8ca812.ctex"]
+source_file="res://Graphics/Objects/Bubble/bubblestand.png"
+dest_files=["res://.godot/imported/bubblestand.png-ed55cb4bbb2a4e7452bc202c0e0903fe.ctex"]
 
 [params]
 

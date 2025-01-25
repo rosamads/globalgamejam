@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhk5p48hp04u8"
-path="res://.godot/imported/goob.png-4d9d582c1c928df8df2929177b8ca812.ctex"
+uid="uid://d0mr3gnoxevd6"
+path="res://.godot/imported/player.png-1861c62eca7965aa6a21893cf88ca17c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Character/goob.png"
-dest_files=["res://.godot/imported/goob.png-4d9d582c1c928df8df2929177b8ca812.ctex"]
+source_file="res://Graphics/Character/Idle/player.png"
+dest_files=["res://.godot/imported/player.png-1861c62eca7965aa6a21893cf88ca17c.ctex"]
 
 [params]
 

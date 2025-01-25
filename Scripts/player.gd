@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 signal spawn_bubble(position: Vector2, velocity: Vector2)
 
+@onready var sprite = $AnimatedSprite2D
+
 const ACCEL = 1000
 const FRICTION = 1000
 const TOP_SPEED = 700.0
@@ -65,7 +67,18 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, direction * TOP_SPEED, ACCEL * delta)
 		else:
 			velocity.x = move_toward(velocity.x, direction * TOP_SPEED, ACCEL * TURN_AROUND_MULTIPLIER * delta)
+
+		if direction < 0:
+			sprite.flip_h = true
+		else:
+			sprite.flip_h = false
+		sprite.play("run")
+		velocity.x = move_toward(velocity.x, direction * TOP_SPEED, ACCEL * delta)
+		sprite.speed_scale = velocity.x/400
 	else:
+		if velocity.x == 0:
+			sprite.speed_scale = 1
+			sprite.play("default")
 		velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
 
 	move_and_slide()
