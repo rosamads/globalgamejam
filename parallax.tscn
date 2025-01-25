@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbpuef2ofewn7"]
+
+[ext_resource type="Texture2D" uid="uid://ca8umggne7a2y" path="res://Graphics/Environment/sky.png" id="1_itbkl"]
+[ext_resource type="Texture2D" uid="uid://bc1ocemnk5bjp" path="res://Graphics/Environment/clouds.png" id="2_io1ri"]
+[ext_resource type="Texture2D" uid="uid://dfphm7hk3dpwf" path="res://Graphics/Environment/palmtrees.png" id="3_xhl0i"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="Sky" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0, 0)
+
+[node name="Sky" type="Sprite2D" parent="Sky"]
+texture_filter = 1
+position = Vector2(592, 325)
+scale = Vector2(6.04824, 6.04824)
+texture = ExtResource("1_itbkl")
+
+[node name="Clouds" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1400, 0)
+
+[node name="Clouds" type="Sprite2D" parent="Clouds"]
+texture_filter = 1
+position = Vector2(583, 314)
+scale = Vector2(6.0616, 5.53227)
+texture = ExtResource("2_io1ri")
+
+[node name="Trees" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1200, 0)
+
+[node name="PalmTrees" type="Sprite2D" parent="Trees"]
+texture_filter = 1
+position = Vector2(279, 117)
+scale = Vector2(4.32721, 4.32721)
+texture = ExtResource("3_xhl0i")

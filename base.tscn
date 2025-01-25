@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://duhgwgqbvxd11"]
+[gd_scene load_steps=5 format=3 uid="uid://duhgwgqbvxd11"]
 
 [ext_resource type="Script" path="res://Scripts/base.gd" id="1_a2tob"]
 [ext_resource type="PackedScene" uid="uid://b0q4qna0bdrrh" path="res://player.tscn" id="1_xlit0"]
 [ext_resource type="PackedScene" uid="uid://bx0wv0v3vry1g" path="res://test_level.tscn" id="2_i8bcu"]
+[ext_resource type="PackedScene" uid="uid://bbpuef2ofewn7" path="res://parallax.tscn" id="4_rvshl"]
 
 [node name="Base" type="Node"]
 script = ExtResource("1_a2tob")
@@ -36,3 +37,5 @@ layout_mode = 2
 text = "Press start to toggle menu text, select to quit"
 
 [node name="Entites" type="Node" parent="."]
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("4_rvshl")]

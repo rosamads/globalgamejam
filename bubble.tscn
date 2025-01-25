@@ -1,13 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://cn4piknxrksmt"]
+[gd_scene load_steps=14 format=3 uid="uid://cn4piknxrksmt"]
 
 [ext_resource type="Script" path="res://Scripts/bubble.gd" id="1_bsqu1"]
 [ext_resource type="Texture2D" uid="uid://4w8k16w0v35t" path="res://Graphics/Objects/Bubble/bubble_3.png" id="2_7lm7a"]
+[ext_resource type="Texture2D" uid="uid://yvipg73ennd4" path="res://Graphics/Objects/Bubble/pop/pop.png" id="3_gg176"]
 [ext_resource type="Texture2D" uid="uid://ctrrwn73stq7h" path="res://Graphics/Objects/Bubble/bubble.png" id="3_w8bti"]
 [ext_resource type="Texture2D" uid="uid://13k7bstrl4y8" path="res://Graphics/Objects/Bubble/bubble_1.png" id="4_di1ji"]
+[ext_resource type="Texture2D" uid="uid://1wj5ypoyn3yk" path="res://Graphics/Objects/Bubble/pop/pop_2.png" id="4_nob2m"]
 [ext_resource type="Texture2D" uid="uid://ch2ogqkdm7kn8" path="res://Graphics/Objects/Bubble/bubble_2.png" id="5_2xd4l"]
+[ext_resource type="Texture2D" uid="uid://doe0aq0dxa6o4" path="res://Graphics/Objects/Bubble/pop/pop_1.png" id="5_pio4m"]
+[ext_resource type="Texture2D" uid="uid://b7wdmna3fnpd2" path="res://Graphics/Objects/Bubble/pop/pop_3.png" id="6_y3vlr"]
+[ext_resource type="Texture2D" uid="uid://c580k2kvd45yw" path="res://Graphics/Objects/Bubble/bubblestand.png" id="7_alqa8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l4lkx"]
-size = Vector2(60, 49.5)
+size = Vector2(60, 40.25)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kqgow"]
 animations = [{
@@ -17,6 +22,47 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.3,
+"texture": ExtResource("3_gg176")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nob2m")
+}],
+"loop": true,
+"name": &"pop_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.3,
+"texture": ExtResource("3_gg176")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pio4m")
+}],
+"loop": true,
+"name": &"pop_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.3,
+"texture": ExtResource("3_gg176")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_y3vlr")
+}],
+"loop": true,
+"name": &"pop_3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_alqa8")
+}],
+"loop": true,
+"name": &"pressed",
 "speed": 5.0
 }, {
 "frames": [{
@@ -37,12 +83,15 @@ animations = [{
 "speed": 14.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjm0s"]
+size = Vector2(58, 12)
+
 [node name="Bubble" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_bsqu1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3.5)
+position = Vector2(0, 8.125)
 shape = SubResource("RectangleShape2D_l4lkx")
 
 [node name="CollisionTimer" type="Timer" parent="."]
@@ -55,9 +104,7 @@ texture_filter = 1
 position = Vector2(4, -1.19209e-07)
 scale = Vector2(2.316, 2.316)
 sprite_frames = SubResource("SpriteFrames_kqgow")
-animation = &"spawn"
-frame = 3
-frame_progress = 1.0
+animation = &"pressed"
 
 [node name="DespawnTimer" type="Timer" parent="."]
 wait_time = 5.0
@@ -69,7 +116,21 @@ wait_time = 0.28
 one_shot = true
 autostart = true
 
+[node name="PopTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -17)
+shape = SubResource("RectangleShape2D_qjm0s")
+
 [connection signal="timeout" from="CollisionTimer" to="." method="_on_collision_timer_timeout"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
 [connection signal="timeout" from="BubbleDelayTimer" to="." method="_on_bubble_delay_timer_timeout"]
+[connection signal="timeout" from="PopTimer" to="." method="_on_pop_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
