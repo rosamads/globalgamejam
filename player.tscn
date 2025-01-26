@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b0q4qna0bdrrh"]
+[gd_scene load_steps=29 format=3 uid="uid://b0q4qna0bdrrh"]
 
 [ext_resource type="Texture2D" uid="uid://d0mr3gnoxevd6" path="res://Graphics/Character/Idle/player.png" id="1_6nyc0"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_c2nyo"]
@@ -12,9 +12,13 @@
 [ext_resource type="Texture2D" uid="uid://dvtdh4ta3v02f" path="res://Graphics/Character/Attack/attack_3.png" id="5_c1rgu"]
 [ext_resource type="Texture2D" uid="uid://dn62he4jcjbg3" path="res://Graphics/Character/Running/run_2.png" id="5_fh4js"]
 [ext_resource type="Texture2D" uid="uid://6267tyqsmvr5" path="res://Graphics/Character/Attack/attack_4.png" id="6_eo28m"]
+[ext_resource type="Texture2D" uid="uid://dhk2jwmc743tr" path="res://Graphics/Character/Death/death.png" id="7_0b5u3"]
 [ext_resource type="Texture2D" uid="uid://q77xdho8rr77" path="res://Graphics/Character/Running/run_3.png" id="7_0ympr"]
+[ext_resource type="Texture2D" uid="uid://dr7dmk7nv1mug" path="res://Graphics/Character/Death/death_1.png" id="8_3qlhs"]
 [ext_resource type="Texture2D" uid="uid://bb7bk133m2lj7" path="res://Graphics/Character/Running/walk_4.png" id="8_7kplj"]
+[ext_resource type="Texture2D" uid="uid://dwvd4w5a0fxti" path="res://Graphics/Character/Death/death_2.png" id="9_84xph"]
 [ext_resource type="Texture2D" uid="uid://dycnnfdewnkcy" path="res://Graphics/Character/Air/jump.png" id="10_eolu4"]
+[ext_resource type="Texture2D" uid="uid://dbdef5ock72c5" path="res://Graphics/Character/Death/death_3.png" id="10_wxe3a"]
 [ext_resource type="Texture2D" uid="uid://c71hqjt6wqc5c" path="res://Graphics/Character/Air/jump_1.png" id="11_34nqg"]
 [ext_resource type="AudioStream" uid="uid://dlujqfiwcjpqx" path="res://Sounds/Player/jump1.wav" id="17_uu65u"]
 [ext_resource type="AudioStream" uid="uid://dws1ct7jkdj03" path="res://Sounds/Player/jump2.wav" id="18_gw87n"]
@@ -43,6 +47,23 @@ animations = [{
 "loop": false,
 "name": &"attack",
 "speed": 16.0
+}, {
+"frames": [{
+"duration": 2.6,
+"texture": ExtResource("7_0b5u3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3qlhs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_84xph")
+}, {
+"duration": 1.2,
+"texture": ExtResource("10_wxe3a")
+}],
+"loop": true,
+"name": &"death",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 0.6,
@@ -122,7 +143,8 @@ texture_filter = 1
 position = Vector2(6, 0)
 scale = Vector2(1.89063, 1.89063)
 sprite_frames = SubResource("SpriteFrames_y52w3")
-animation = &"jump"
+animation = &"death"
+frame_progress = 0.0672389
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4.5, 0.5)
