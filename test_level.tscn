@@ -99,7 +99,6 @@ texture = ExtResource("1_1oit4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor1"]
 position = Vector2(0.489023, 6.58017)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_rhcvc")
 
 [node name="Cliffside" type="Sprite2D" parent="Floor1"]
@@ -142,7 +141,6 @@ shape = SubResource("RectangleShape2D_2eod2")
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="Cliff"]
 position = Vector2(53.5527, -9.84485)
 rotation = 0.598648
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_6kpyw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
