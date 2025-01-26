@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cn4piknxrksmt"]
+[gd_scene load_steps=26 format=3 uid="uid://cn4piknxrksmt"]
 
 [ext_resource type="Script" path="res://Scripts/bubble.gd" id="1_bsqu1"]
 [ext_resource type="Texture2D" uid="uid://4w8k16w0v35t" path="res://Graphics/Objects/Bubble/bubble_3.png" id="2_7lm7a"]
@@ -10,6 +10,16 @@
 [ext_resource type="Texture2D" uid="uid://doe0aq0dxa6o4" path="res://Graphics/Objects/Bubble/pop/pop_1.png" id="5_pio4m"]
 [ext_resource type="Texture2D" uid="uid://b7wdmna3fnpd2" path="res://Graphics/Objects/Bubble/pop/pop_3.png" id="6_y3vlr"]
 [ext_resource type="Texture2D" uid="uid://c580k2kvd45yw" path="res://Graphics/Objects/Bubble/bubblestand.png" id="7_alqa8"]
+[ext_resource type="AudioStream" uid="uid://dkaktau3jbp8k" path="res://Sounds/Bubble/bubble1.wav" id="11_tvrag"]
+[ext_resource type="AudioStream" uid="uid://bnxauhnvheia" path="res://Sounds/Bubble/bubble2.wav" id="12_egcjd"]
+[ext_resource type="AudioStream" uid="uid://bphwm8pdaufhq" path="res://Sounds/Bubble/bubble3.wav" id="13_bug71"]
+[ext_resource type="AudioStream" uid="uid://c410yf2y7ukdv" path="res://Sounds/Bubble/bubble4.wav" id="14_60jh1"]
+[ext_resource type="AudioStream" uid="uid://cgbwns6v8ei5u" path="res://Sounds/Bubble/bubble5.wav" id="15_ei31w"]
+[ext_resource type="AudioStream" uid="uid://c4ksv5b38uhme" path="res://Sounds/Bubble/pop1.wav" id="16_t5yt7"]
+[ext_resource type="AudioStream" uid="uid://c68y3sxcyvalp" path="res://Sounds/Bubble/pop2.wav" id="17_jw70y"]
+[ext_resource type="AudioStream" uid="uid://bg0yk3dvup72h" path="res://Sounds/Bubble/pop3.wav" id="18_4x2ul"]
+[ext_resource type="AudioStream" uid="uid://bt335x0d58mev" path="res://Sounds/Bubble/pop4.wav" id="19_fkn2h"]
+[ext_resource type="AudioStream" uid="uid://wbqjn01x4dnm" path="res://Sounds/Bubble/pop5.wav" id="20_omhcq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l4lkx"]
 size = Vector2(60, 40.25)
@@ -86,6 +96,22 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qjm0s"]
 size = Vector2(58, 12)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lck0w"]
+streams_count = 5
+stream_0/stream = ExtResource("11_tvrag")
+stream_1/stream = ExtResource("12_egcjd")
+stream_2/stream = ExtResource("13_bug71")
+stream_3/stream = ExtResource("14_60jh1")
+stream_4/stream = ExtResource("15_ei31w")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_811tj"]
+streams_count = 5
+stream_0/stream = ExtResource("16_t5yt7")
+stream_1/stream = ExtResource("17_jw70y")
+stream_2/stream = ExtResource("18_4x2ul")
+stream_3/stream = ExtResource("19_fkn2h")
+stream_4/stream = ExtResource("20_omhcq")
+
 [node name="Bubble" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_bsqu1")
@@ -122,10 +148,17 @@ wait_time = 0.2
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -17)
 shape = SubResource("RectangleShape2D_qjm0s")
+
+[node name="BubbleSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_lck0w")
+
+[node name="PopSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_811tj")
 
 [connection signal="timeout" from="CollisionTimer" to="." method="_on_collision_timer_timeout"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

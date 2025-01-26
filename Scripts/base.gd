@@ -24,8 +24,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("menu"):
 		$MainCam/Menu.visible = !$MainCam/Menu.visible
+		$MainCam/Menu/MenuSelectSound.play()
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
+	if Input.is_action_just_pressed("bubble"):
+		$MainCam/MyGame.visible = !$MainCam/MyGame.visible
+		$MainCam/Menu/MenuSelectSound.play()
 	
 	if player.velocity.x != 0:
 		#cam x
