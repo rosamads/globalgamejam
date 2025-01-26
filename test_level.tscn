@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bx0wv0v3vry1g"]
+[gd_scene load_steps=39 format=3 uid="uid://bx0wv0v3vry1g"]
 
 [ext_resource type="Texture2D" uid="uid://b5wtv01tyo3j4" path="res://Graphics/Environment/floor.png" id="1_1oit4"]
 [ext_resource type="Texture2D" uid="uid://bo3787pwvyd7k" path="res://Graphics/Environment/cliff.png" id="1_wchn6"]
@@ -52,10 +52,16 @@ size = Vector2(17.0297, 0.793037)
 size = Vector2(44.0806, 92.1533)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iag82"]
-size = Vector2(15.9688, 65.5387)
+size = Vector2(72.8576, 65.5387)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mptip"]
-size = Vector2(664, 18)
+size = Vector2(654, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t0nik"]
+size = Vector2(504, 871)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ya2xg"]
+size = Vector2(69.0793, 629.883)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g6tyb"]
 animations = [{
@@ -175,7 +181,7 @@ position = Vector2(206.513, 49.0708)
 shape = SubResource("RectangleShape2D_ps6t7")
 
 [node name="CollisionShape2D9" type="CollisionShape2D" parent="Cliff"]
-position = Vector2(329.523, 48.7381)
+position = Vector2(357.967, 48.7381)
 shape = SubResource("RectangleShape2D_iag82")
 
 [node name="Mesa" type="StaticBody2D" parent="."]
@@ -187,8 +193,17 @@ scale = Vector2(6.012, 6.012)
 texture = ExtResource("6_24oe5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mesa"]
-position = Vector2(4196, 153)
+position = Vector2(4191, 153)
 shape = SubResource("RectangleShape2D_mptip")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Mesa"]
+position = Vector2(4265, 598.5)
+shape = SubResource("RectangleShape2D_t0nik")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Mesa"]
+position = Vector2(3985.19, 463.324)
+rotation = -0.207694
+shape = SubResource("RectangleShape2D_ya2xg")
 
 [node name="Goat" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
