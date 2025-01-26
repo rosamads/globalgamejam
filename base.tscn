@@ -51,11 +51,13 @@ script = ExtResource("1_a2tob")
 
 [node name="Player" parent="." instance=ExtResource("1_xlit0")]
 z_index = 1
+position = Vector2(0, 320)
 
 [node name="TestLevel" parent="." instance=ExtResource("2_i8bcu")]
 position = Vector2(-349, 1)
 
 [node name="MainCam" type="Camera2D" parent="."]
+position = Vector2(0, 320)
 
 [node name="Menu" type="CenterContainer" parent="MainCam"]
 z_index = 100

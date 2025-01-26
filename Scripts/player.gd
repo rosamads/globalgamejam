@@ -8,6 +8,7 @@ signal spawn_bubble(position: Vector2, velocity: Vector2)
 var bubble_ready = false
 var animation_playing = 0
 var can_control = true
+@onready var spawn = self.global_position
 
 const ACCEL = 1000
 const FRICTION = 1000
@@ -173,5 +174,9 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 
 func _on_death_timer_timeout() -> void:
-	position = Vector2(0,0)
+	global_position = spawn
 	can_control = true
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	spawn = area.global_position
