@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://bx0wv0v3vry1g"]
+[gd_scene load_steps=60 format=3 uid="uid://bx0wv0v3vry1g"]
 
 [ext_resource type="Texture2D" uid="uid://b5wtv01tyo3j4" path="res://Graphics/Environment/floor.png" id="1_1oit4"]
 [ext_resource type="Texture2D" uid="uid://v3pacurdgjh0" path="res://Graphics/Environment/gold.png" id="1_g0h4y"]
@@ -47,6 +47,15 @@ animations = [{
 "name": &"default",
 "speed": 10.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7rt4j"]
+size = Vector2(222, 455)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wr5fg"]
+size = Vector2(264, 351)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j2hbv"]
+size = Vector2(222, 292)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_q30cy"]
 
@@ -215,6 +224,8 @@ position = Vector2(9172, -362)
 scale = Vector2(6.012, 6.012)
 
 [node name="Area2D" type="Area2D" parent="Gold"]
+collision_layer = 1048576
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gold/Area2D"]
 position = Vector2(9960, -777)
@@ -226,6 +237,18 @@ position = Vector2(9948, -783)
 scale = Vector2(6.012, 6.012)
 sprite_frames = SubResource("SpriteFrames_fh8df")
 frame_progress = 0.564438
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gold"]
+position = Vector2(8017, -281.5)
+shape = SubResource("RectangleShape2D_7rt4j")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Gold"]
+position = Vector2(8471, -228.5)
+shape = SubResource("RectangleShape2D_wr5fg")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Gold"]
+position = Vector2(9147, -198)
+shape = SubResource("RectangleShape2D_j2hbv")
 
 [node name="Floor1" type="StaticBody2D" parent="."]
 position = Vector2(136, 392)
