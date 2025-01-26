@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bx0wv0v3vry1g"]
+[gd_scene load_steps=34 format=3 uid="uid://bx0wv0v3vry1g"]
 
 [ext_resource type="Texture2D" uid="uid://b5wtv01tyo3j4" path="res://Graphics/Environment/floor.png" id="1_1oit4"]
 [ext_resource type="Texture2D" uid="uid://bo3787pwvyd7k" path="res://Graphics/Environment/cliff.png" id="1_wchn6"]
@@ -7,14 +7,17 @@
 [ext_resource type="Texture2D" uid="uid://j8mui5lgxy87" path="res://Graphics/Objects/Goat/goat_2.png" id="3_g651h"]
 [ext_resource type="Texture2D" uid="uid://wxfp2qhqge24" path="res://Graphics/Environment/pillars.png" id="4_4yper"]
 [ext_resource type="Texture2D" uid="uid://dw2qy1eybkim2" path="res://Graphics/Objects/Goat/goat_3.png" id="4_wpk02"]
+[ext_resource type="Texture2D" uid="uid://cb6o4hlhqk4jv" path="res://Graphics/Environment/test.png" id="5_d12oo"]
 [ext_resource type="Texture2D" uid="uid://i42hcyuckvkn" path="res://Graphics/Objects/Goat/goat_4.png" id="5_jwuhd"]
 [ext_resource type="Texture2D" uid="uid://bwefad66iaqwv" path="res://Graphics/Objects/Goat/goat_5.png" id="6_3u6wr"]
+[ext_resource type="Texture2D" uid="uid://cmfkgfgguf5k7" path="res://Graphics/Environment/spikes.png" id="6_24oe5"]
 [ext_resource type="Texture2D" uid="uid://yfxkaehrwtrc" path="res://Graphics/Objects/speech_bubble.png" id="7_fs7d2"]
 [ext_resource type="Script" path="res://speech_bubble.gd" id="8_aa8td"]
 [ext_resource type="Theme" uid="uid://regkol5ptxlq" path="res://Themes/text.tres" id="8_yll50"]
 [ext_resource type="Script" path="res://goat.gd" id="9_e35j0"]
 [ext_resource type="Texture2D" uid="uid://bf6jtlnfkumec" path="res://Graphics/Environment/death.png" id="10_s3md1"]
 [ext_resource type="Script" path="res://death_plane.gd" id="12_wm2pv"]
+[ext_resource type="PackedScene" uid="uid://bb7itw8sn27ka" path="res://spike.tscn" id="16_h4n0h"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_q30cy"]
 
@@ -44,6 +47,9 @@ size = Vector2(11.6634, 0.998053)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6kpyw"]
 size = Vector2(17.0297, 0.793037)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mptip"]
+size = Vector2(664, 18)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g6tyb"]
 animations = [{
@@ -86,8 +92,6 @@ distance = 110.996
 [node name="Floor1" type="StaticBody2D" parent="."]
 position = Vector2(136, 392)
 scale = Vector2(6.012, 6.012)
-collision_layer = 0
-collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="Floor1"]
 visible = false
@@ -151,6 +155,24 @@ position = Vector2(53.5527, -9.84485)
 rotation = 0.598648
 shape = SubResource("RectangleShape2D_6kpyw")
 
+[node name="Test" type="Sprite2D" parent="Cliff"]
+visible = false
+texture_filter = 1
+position = Vector2(449.954, -2.99415)
+texture = ExtResource("5_d12oo")
+
+[node name="Mesa" type="StaticBody2D" parent="."]
+
+[node name="Spikes" type="Sprite2D" parent="Mesa"]
+texture_filter = 1
+position = Vector2(3842, 169)
+scale = Vector2(6.012, 6.012)
+texture = ExtResource("6_24oe5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mesa"]
+position = Vector2(4196, 153)
+shape = SubResource("RectangleShape2D_mptip")
+
 [node name="Goat" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(1592, 380)
@@ -172,8 +194,9 @@ texture = SubResource("CanvasTexture_1kdlh")
 
 [node name="Label" type="Label" parent="Goat/SpeechBubble/Sprite2D"]
 offset_left = -168.0
-offset_top = -191.0
+offset_top = -194.584
 offset_right = -7.0
+offset_bottom = 3.41605
 theme = ExtResource("8_yll50")
 text = "Press the right stick up to shoot a bubble upwards"
 autowrap_mode = 2
@@ -231,6 +254,59 @@ position = Vector2(-3.67675, -3953.91)
 rotation = 3.14159
 scale = Vector2(1.00127, 6.69631)
 texture = ExtResource("10_s3md1")
+
+[node name="Spike" parent="." instance=ExtResource("16_h4n0h")]
+position = Vector2(3848, 154)
+rotation = -1.5708
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike2" parent="." instance=ExtResource("16_h4n0h")]
+position = Vector2(3878, 124)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike3" parent="." instance=ExtResource("16_h4n0h")]
+position = Vector2(3902, 124)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike4" parent="." instance=ExtResource("16_h4n0h")]
+position = Vector2(3926, 124)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike5" parent="." instance=ExtResource("16_h4n0h")]
+position = Vector2(3950, 124)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike6" parent="." instance=ExtResource("16_h4n0h")]
+position = Vector2(3974, 124)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike7" parent="." instance=ExtResource("16_h4n0h")]
+position = Vector2(3998, 124)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike8" parent="." instance=ExtResource("16_h4n0h")]
+position = Vector2(4022, 124)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike9" parent="." instance=ExtResource("16_h4n0h")]
+position = Vector2(4046, 124)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike10" parent="." instance=ExtResource("16_h4n0h")]
+position = Vector2(4070, 124)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike11" parent="." instance=ExtResource("16_h4n0h")]
+position = Vector2(4094, 124)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike12" parent="." instance=ExtResource("16_h4n0h")]
+position = Vector2(4118, 124)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike13" parent="." instance=ExtResource("16_h4n0h")]
+position = Vector2(4142, 124)
+scale = Vector2(6.012, 6.012)
 
 [connection signal="timeout" from="Goat/SpeechBubble/Timer" to="Goat/SpeechBubble" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Goat/SpeechBubble/Area2D" to="Goat/SpeechBubble" method="_on_area_2d_body_entered"]

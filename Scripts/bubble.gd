@@ -25,8 +25,7 @@ func pop_self():
 	
 
 func _on_collision_timer_timeout() -> void:
-	collision_layer = 0b100
-
+	collision_layer = 0b10000100
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	sprite.play("default")
