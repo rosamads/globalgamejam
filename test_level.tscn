@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bx0wv0v3vry1g"]
+[gd_scene load_steps=45 format=3 uid="uid://bx0wv0v3vry1g"]
 
 [ext_resource type="Texture2D" uid="uid://b5wtv01tyo3j4" path="res://Graphics/Environment/floor.png" id="1_1oit4"]
 [ext_resource type="Texture2D" uid="uid://bo3787pwvyd7k" path="res://Graphics/Environment/cliff.png" id="1_wchn6"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://bf6jtlnfkumec" path="res://Graphics/Environment/death.png" id="10_s3md1"]
 [ext_resource type="Script" path="res://death_plane.gd" id="12_wm2pv"]
 [ext_resource type="PackedScene" uid="uid://bb7itw8sn27ka" path="res://spike.tscn" id="16_h4n0h"]
+[ext_resource type="AudioStream" uid="uid://7plonp135iy1" path="res://Sounds/goat.wav" id="20_s8v8l"]
 [ext_resource type="Texture2D" uid="uid://gq7378nom73o" path="res://Graphics/Environment/tower.png" id="21_2rc5n"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_q30cy"]
@@ -267,6 +268,12 @@ position = Vector2(5194.35, -623.232)
 scale = Vector2(6.012, 6.012)
 texture = ExtResource("8_j2yeq")
 
+[node name="Pitceiling7" type="Sprite2D" parent="Mesa"]
+texture_filter = 1
+position = Vector2(6485, -748)
+scale = Vector2(6.012, 6.012)
+texture = ExtResource("8_j2yeq")
+
 [node name="Goat" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(1592, 380)
@@ -307,6 +314,10 @@ collision_mask = 64
 position = Vector2(-77.6789, 13.0203)
 shape = SubResource("RectangleShape2D_cqd1n")
 
+[node name="Baaah" type="AudioStreamPlayer2D" parent="Goat/SpeechBubble"]
+stream = ExtResource("20_s8v8l")
+volume_db = 0.99
+
 [node name="DeathPlane" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 192
@@ -314,14 +325,14 @@ script = ExtResource("12_wm2pv")
 
 [node name="Death" type="Sprite2D" parent="DeathPlane"]
 z_index = 3
-position = Vector2(4011, 540.857)
+position = Vector2(14861.9, 540.885)
 rotation = -3.14159
-scale = Vector2(6.36873, 0.283241)
+scale = Vector2(17.6718, 0.283241)
 texture = ExtResource("10_s3md1")
 
 [node name="Death2" type="Sprite2D" parent="DeathPlane/Death"]
 z_index = 3
-position = Vector2(-3.67675, -3953.91)
+position = Vector2(-2.60742, -3876.96)
 rotation = 3.14159
 scale = Vector2(1.00127, 6.69631)
 texture = ExtResource("10_s3md1")
@@ -417,6 +428,7 @@ shape = SubResource("RectangleShape2D_2rsio")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
 position = Vector2(6417, -347)
+rotation = -0.0174533
 shape = SubResource("WorldBoundaryShape2D_adnjb")
 
 [connection signal="timeout" from="Goat/SpeechBubble/Timer" to="Goat/SpeechBubble" method="_on_timer_timeout"]
