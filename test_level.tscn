@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bx0wv0v3vry1g"]
+[gd_scene load_steps=44 format=3 uid="uid://bx0wv0v3vry1g"]
 
 [ext_resource type="Texture2D" uid="uid://b5wtv01tyo3j4" path="res://Graphics/Environment/floor.png" id="1_1oit4"]
 [ext_resource type="Texture2D" uid="uid://bo3787pwvyd7k" path="res://Graphics/Environment/cliff.png" id="1_wchn6"]
@@ -107,7 +107,7 @@ distance = 110.996
 size = Vector2(37, 114)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_adnjb"]
-distance = 494.0
+distance = 601.7
 
 [node name="TestLevel" type="Node2D"]
 
@@ -216,6 +216,7 @@ texture_filter = 1
 position = Vector2(6546, 151)
 scale = Vector2(6.012, 6.012)
 texture = ExtResource("8_44nu2")
+
 [node name="Pitceiling" type="Sprite2D" parent="Mesa"]
 texture_filter = 1
 position = Vector2(5194, -605)
@@ -231,7 +232,7 @@ texture = ExtResource("8_j2yeq")
 
 [node name="Pitceiling3" type="Sprite2D" parent="Mesa"]
 texture_filter = 1
-position = Vector2(5194.35, -868.232)
+position = Vector2(5194.35, -867.232)
 scale = Vector2(6.012, -6.012)
 texture = ExtResource("8_j2yeq")
 
@@ -253,6 +254,18 @@ shape = SubResource("RectangleShape2D_t0nik")
 position = Vector2(3985.19, 463.324)
 rotation = -0.207694
 shape = SubResource("RectangleShape2D_ya2xg")
+
+[node name="Pitceiling5" type="Sprite2D" parent="Mesa"]
+texture_filter = 1
+position = Vector2(5194.35, -1130.23)
+scale = Vector2(6.012, -6.012)
+texture = ExtResource("8_j2yeq")
+
+[node name="Pitceiling6" type="Sprite2D" parent="Mesa"]
+texture_filter = 1
+position = Vector2(5194.35, -623.232)
+scale = Vector2(6.012, 6.012)
+texture = ExtResource("8_j2yeq")
 
 [node name="Goat" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
