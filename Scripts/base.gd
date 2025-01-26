@@ -49,7 +49,7 @@ func _process(delta: float) -> void:
 			look_ahead_y, abs(player.velocity.y) * cam_move_multiplier * delta)
 	else:
 		maincam.position.y = move_toward(maincam.position.y,
-			player.position.y, cam_reset_speed * delta)
+			player.position.y - 70, cam_reset_speed * delta)
 
 func _spawn_bubble(position, velocity):
 	var instance = bubble_tscn.instantiate()
