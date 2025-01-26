@@ -416,6 +416,7 @@ shape = SubResource("RectangleShape2D_2rsio")
 [node name="Ceiling" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+position = Vector2(6417, -347)
 shape = SubResource("WorldBoundaryShape2D_adnjb")
 
 [connection signal="timeout" from="Goat/SpeechBubble/Timer" to="Goat/SpeechBubble" method="_on_timer_timeout"]
