@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://b0q4qna0bdrrh" path="res://player.tscn" id="1_xlit0"]
 [ext_resource type="PackedScene" uid="uid://bx0wv0v3vry1g" path="res://test_level.tscn" id="2_i8bcu"]
 [ext_resource type="PackedScene" uid="uid://b2t1ig1p0mdiv" path="res://parallax.tscn" id="4_rvshl"]
-[ext_resource type="Texture2D" uid="uid://d0mr3gnoxevd6" path="res://Graphics/Character/Idle/player.png" id="4_vg8f2"]
 [ext_resource type="FontFile" uid="uid://c8knkfeykanea" path="res://Graphics/SourGummy_Expanded-Regular.ttf" id="5_o1s82"]
 [ext_resource type="AudioStream" uid="uid://dkchg2bs75x2n" path="res://Sounds/menu_select.wav" id="5_tl3s7"]
+[ext_resource type="Texture2D" uid="uid://hs0ofaqit8a" path="res://Graphics/logo.png" id="6_eti4y"]
 [ext_resource type="AudioStream" uid="uid://4ilfsotstgna" path="res://Sounds/pepper_song_2loop.wav" id="7_t18gb"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_s6824"]
@@ -82,8 +82,11 @@ layout_mode = 2
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="MainCam/Menu/PanelContainer/VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-texture = ExtResource("4_vg8f2")
+texture = ExtResource("6_eti4y")
+stretch_mode = 4
 
 [node name="Title" type="Label" parent="MainCam/Menu/PanelContainer/VBoxContainer"]
 layout_mode = 2
