@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bx0wv0v3vry1g"]
+[gd_scene load_steps=42 format=3 uid="uid://bx0wv0v3vry1g"]
 
 [ext_resource type="Texture2D" uid="uid://b5wtv01tyo3j4" path="res://Graphics/Environment/floor.png" id="1_1oit4"]
 [ext_resource type="Texture2D" uid="uid://bo3787pwvyd7k" path="res://Graphics/Environment/cliff.png" id="1_wchn6"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://yfxkaehrwtrc" path="res://Graphics/Objects/speech_bubble.png" id="7_fs7d2"]
 [ext_resource type="Texture2D" uid="uid://b3km6b7ciyn7l" path="res://Graphics/Environment/pit.png" id="7_h0gbg"]
 [ext_resource type="Script" path="res://speech_bubble.gd" id="8_aa8td"]
+[ext_resource type="Texture2D" uid="uid://c4y1ngf0q5v22" path="res://Graphics/Environment/pitceiling.png" id="8_j2yeq"]
 [ext_resource type="Theme" uid="uid://regkol5ptxlq" path="res://Themes/text.tres" id="8_yll50"]
 [ext_resource type="Script" path="res://goat.gd" id="9_e35j0"]
 [ext_resource type="Texture2D" uid="uid://bf6jtlnfkumec" path="res://Graphics/Environment/death.png" id="10_s3md1"]
@@ -102,6 +103,9 @@ distance = 110.996
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2rsio"]
 size = Vector2(37, 114)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_adnjb"]
+distance = 494.0
 
 [node name="TestLevel" type="Node2D"]
 
@@ -198,6 +202,31 @@ texture_filter = 1
 position = Vector2(5194, 163)
 scale = Vector2(6.012, 6.012)
 texture = ExtResource("7_h0gbg")
+
+[node name="Pitceiling" type="Sprite2D" parent="Mesa"]
+texture_filter = 1
+position = Vector2(5194, -605)
+rotation = -3.14159
+scale = Vector2(-6.012, 6.012)
+texture = ExtResource("8_j2yeq")
+
+[node name="Pitceiling2" type="Sprite2D" parent="Mesa"]
+texture_filter = 1
+position = Vector2(5194, -97.0001)
+scale = Vector2(6.012, 6.012)
+texture = ExtResource("8_j2yeq")
+
+[node name="Pitceiling3" type="Sprite2D" parent="Mesa"]
+texture_filter = 1
+position = Vector2(5194.35, -868.232)
+scale = Vector2(6.012, -6.012)
+texture = ExtResource("8_j2yeq")
+
+[node name="Pitceiling4" type="Sprite2D" parent="Mesa"]
+texture_filter = 1
+position = Vector2(5194.35, -360.232)
+scale = Vector2(6.012, 6.012)
+texture = ExtResource("8_j2yeq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mesa"]
 position = Vector2(4358.5, 153)
@@ -357,6 +386,11 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Spawns/Area2D"]
 position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_2rsio")
+
+[node name="Ceiling" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+shape = SubResource("WorldBoundaryShape2D_adnjb")
 
 [connection signal="timeout" from="Goat/SpeechBubble/Timer" to="Goat/SpeechBubble" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Goat/SpeechBubble/Area2D" to="Goat/SpeechBubble" method="_on_area_2d_body_entered"]
