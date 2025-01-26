@@ -1,6 +1,5 @@
 extends Node
 
-
 const cam_move_multiplier = 1.2
 const cam_reset_speed = 25
 const look_ahead_multiplier = 100
@@ -20,6 +19,7 @@ func _ready() -> void:
 	
 	player.spawn_bubble.connect(_spawn_bubble)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	$Player/Area2D2.connect("area_entered", _win)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -62,3 +62,10 @@ func _spawn_bubble(position, velocity):
 	instance.position = position
 	instance.velocity = velocity
 	entities.add_child(instance)
+	
+func _win(_body):
+	call_deferred("_win2")
+	$MainCam/WinText.visible = true
+
+func _win2():
+	$Player.process_mode = Node.PROCESS_MODE_DISABLED
