@@ -1,13 +1,17 @@
-[gd_scene load_steps=50 format=3 uid="uid://bx0wv0v3vry1g"]
+[gd_scene load_steps=57 format=3 uid="uid://bx0wv0v3vry1g"]
 
 [ext_resource type="Texture2D" uid="uid://b5wtv01tyo3j4" path="res://Graphics/Environment/floor.png" id="1_1oit4"]
+[ext_resource type="Texture2D" uid="uid://v3pacurdgjh0" path="res://Graphics/Environment/gold.png" id="1_g0h4y"]
 [ext_resource type="Texture2D" uid="uid://bo3787pwvyd7k" path="res://Graphics/Environment/cliff.png" id="1_wchn6"]
 [ext_resource type="Texture2D" uid="uid://c88673ptg60gh" path="res://Graphics/Environment/cliffside.png" id="2_08125"]
 [ext_resource type="Texture2D" uid="uid://dbecqeaeq3nea" path="res://Graphics/Objects/Goat/goat_1.png" id="2_pynb4"]
 [ext_resource type="Texture2D" uid="uid://j8mui5lgxy87" path="res://Graphics/Objects/Goat/goat_2.png" id="3_g651h"]
+[ext_resource type="Texture2D" uid="uid://em4l8cwqwwqh" path="res://Graphics/Objects/GoldBubble/goldbubble.png" id="3_u35sf"]
 [ext_resource type="Texture2D" uid="uid://wxfp2qhqge24" path="res://Graphics/Environment/pillars.png" id="4_4yper"]
+[ext_resource type="Texture2D" uid="uid://dxoabray0m841" path="res://Graphics/Objects/GoldBubble/goldbubble_1.png" id="4_gyp65"]
 [ext_resource type="Texture2D" uid="uid://dw2qy1eybkim2" path="res://Graphics/Objects/Goat/goat_3.png" id="4_wpk02"]
 [ext_resource type="Texture2D" uid="uid://cb6o4hlhqk4jv" path="res://Graphics/Environment/test.png" id="5_d12oo"]
+[ext_resource type="Texture2D" uid="uid://dcg1mjv7cwdu4" path="res://Graphics/Objects/GoldBubble/goldbubble_2.png" id="5_eva6f"]
 [ext_resource type="Texture2D" uid="uid://i42hcyuckvkn" path="res://Graphics/Objects/Goat/goat_4.png" id="5_jwuhd"]
 [ext_resource type="Texture2D" uid="uid://bwefad66iaqwv" path="res://Graphics/Objects/Goat/goat_5.png" id="6_3u6wr"]
 [ext_resource type="Texture2D" uid="uid://cmfkgfgguf5k7" path="res://Graphics/Environment/spikes.png" id="6_24oe5"]
@@ -23,6 +27,26 @@
 [ext_resource type="PackedScene" uid="uid://bb7itw8sn27ka" path="res://spike.tscn" id="16_h4n0h"]
 [ext_resource type="AudioStream" uid="uid://7plonp135iy1" path="res://Sounds/goat.wav" id="20_s8v8l"]
 [ext_resource type="Texture2D" uid="uid://gq7378nom73o" path="res://Graphics/Environment/tower.png" id="21_2rc5n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r0udm"]
+radius = 413.386
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fh8df"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_u35sf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gyp65")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_eva6f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_q30cy"]
 
@@ -129,6 +153,79 @@ size = Vector2(539, 276)
 distance = 128.0
 
 [node name="TestLevel" type="Node2D"]
+
+[node name="Gold" type="StaticBody2D" parent="."]
+
+[node name="Gold2" type="Sprite2D" parent="Gold"]
+texture_filter = 1
+position = Vector2(8582, -437)
+scale = Vector2(6.012, 6.012)
+texture = ExtResource("1_g0h4y")
+
+[node name="Spike14" parent="Gold" instance=ExtResource("16_h4n0h")]
+position = Vector2(8354, -422)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike15" parent="Gold" instance=ExtResource("16_h4n0h")]
+position = Vector2(7921, -530)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike16" parent="Gold" instance=ExtResource("16_h4n0h")]
+position = Vector2(8378, -422)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike17" parent="Gold" instance=ExtResource("16_h4n0h")]
+position = Vector2(8403, -422)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike18" parent="Gold" instance=ExtResource("16_h4n0h")]
+position = Vector2(8589, -422)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike19" parent="Gold" instance=ExtResource("16_h4n0h")]
+position = Vector2(8565, -422)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike20" parent="Gold" instance=ExtResource("16_h4n0h")]
+position = Vector2(8541, -422)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike21" parent="Gold" instance=ExtResource("16_h4n0h")]
+position = Vector2(9050, -362)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike22" parent="Gold" instance=ExtResource("16_h4n0h")]
+position = Vector2(9075, -362)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike23" parent="Gold" instance=ExtResource("16_h4n0h")]
+position = Vector2(9099, -362)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike24" parent="Gold" instance=ExtResource("16_h4n0h")]
+position = Vector2(9123, -362)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike25" parent="Gold" instance=ExtResource("16_h4n0h")]
+position = Vector2(9148, -362)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike26" parent="Gold" instance=ExtResource("16_h4n0h")]
+position = Vector2(9172, -362)
+scale = Vector2(6.012, 6.012)
+
+[node name="Area2D" type="Area2D" parent="Gold"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gold/Area2D"]
+position = Vector2(9960, -777)
+shape = SubResource("CircleShape2D_r0udm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Gold/Area2D"]
+texture_filter = 1
+position = Vector2(9948, -783)
+scale = Vector2(6.012, 6.012)
+sprite_frames = SubResource("SpriteFrames_fh8df")
+frame_progress = 0.564438
 
 [node name="Floor1" type="StaticBody2D" parent="."]
 position = Vector2(136, 392)
@@ -288,9 +385,17 @@ texture = ExtResource("8_j2yeq")
 
 [node name="Pitceiling7" type="Sprite2D" parent="Mesa"]
 texture_filter = 1
-position = Vector2(6485, -748)
-scale = Vector2(6.012, 6.012)
+position = Vector2(6515.32, -748)
+scale = Vector2(6.28156, 6.012)
 texture = ExtResource("8_j2yeq")
+
+[node name="Pitceiling8" type="Sprite2D" parent="Mesa"]
+texture_filter = 1
+position = Vector2(5485, -904)
+rotation = 1.5708
+scale = Vector2(6.28156, 9.21931)
+texture = ExtResource("8_j2yeq")
+
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Mesa"]
 position = Vector2(5323.5, -698.5)
 shape = SubResource("RectangleShape2D_3ttit")
@@ -310,6 +415,59 @@ shape = SubResource("RectangleShape2D_wqr8f")
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="Mesa"]
 position = Vector2(7051, 117)
 shape = SubResource("RectangleShape2D_cd7cw")
+
+[node name="Spike" parent="Mesa" instance=ExtResource("16_h4n0h")]
+position = Vector2(3809, 151)
+rotation = -1.5708
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike2" parent="Mesa" instance=ExtResource("16_h4n0h")]
+position = Vector2(3878, 124)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike3" parent="Mesa" instance=ExtResource("16_h4n0h")]
+position = Vector2(3902, 124)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike4" parent="Mesa" instance=ExtResource("16_h4n0h")]
+position = Vector2(3926, 124)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike5" parent="Mesa" instance=ExtResource("16_h4n0h")]
+position = Vector2(3950, 124)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike6" parent="Mesa" instance=ExtResource("16_h4n0h")]
+position = Vector2(3974, 124)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike7" parent="Mesa" instance=ExtResource("16_h4n0h")]
+position = Vector2(3998, 124)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike8" parent="Mesa" instance=ExtResource("16_h4n0h")]
+position = Vector2(4022, 124)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike9" parent="Mesa" instance=ExtResource("16_h4n0h")]
+position = Vector2(4046, 124)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike10" parent="Mesa" instance=ExtResource("16_h4n0h")]
+position = Vector2(4070, 124)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike11" parent="Mesa" instance=ExtResource("16_h4n0h")]
+position = Vector2(4094, 124)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike12" parent="Mesa" instance=ExtResource("16_h4n0h")]
+position = Vector2(4118, 124)
+scale = Vector2(6.012, 6.012)
+
+[node name="Spike13" parent="Mesa" instance=ExtResource("16_h4n0h")]
+position = Vector2(4142, 124)
+scale = Vector2(6.012, 6.012)
 
 [node name="Goat" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -396,59 +554,6 @@ position = Vector2(-3.67675, -3953.91)
 rotation = 3.14159
 scale = Vector2(1.00127, 6.69631)
 texture = ExtResource("10_s3md1")
-
-[node name="Spike" parent="." instance=ExtResource("16_h4n0h")]
-position = Vector2(3848, 154)
-rotation = -1.5708
-scale = Vector2(6.012, 6.012)
-
-[node name="Spike2" parent="." instance=ExtResource("16_h4n0h")]
-position = Vector2(3878, 124)
-scale = Vector2(6.012, 6.012)
-
-[node name="Spike3" parent="." instance=ExtResource("16_h4n0h")]
-position = Vector2(3902, 124)
-scale = Vector2(6.012, 6.012)
-
-[node name="Spike4" parent="." instance=ExtResource("16_h4n0h")]
-position = Vector2(3926, 124)
-scale = Vector2(6.012, 6.012)
-
-[node name="Spike5" parent="." instance=ExtResource("16_h4n0h")]
-position = Vector2(3950, 124)
-scale = Vector2(6.012, 6.012)
-
-[node name="Spike6" parent="." instance=ExtResource("16_h4n0h")]
-position = Vector2(3974, 124)
-scale = Vector2(6.012, 6.012)
-
-[node name="Spike7" parent="." instance=ExtResource("16_h4n0h")]
-position = Vector2(3998, 124)
-scale = Vector2(6.012, 6.012)
-
-[node name="Spike8" parent="." instance=ExtResource("16_h4n0h")]
-position = Vector2(4022, 124)
-scale = Vector2(6.012, 6.012)
-
-[node name="Spike9" parent="." instance=ExtResource("16_h4n0h")]
-position = Vector2(4046, 124)
-scale = Vector2(6.012, 6.012)
-
-[node name="Spike10" parent="." instance=ExtResource("16_h4n0h")]
-position = Vector2(4070, 124)
-scale = Vector2(6.012, 6.012)
-
-[node name="Spike11" parent="." instance=ExtResource("16_h4n0h")]
-position = Vector2(4094, 124)
-scale = Vector2(6.012, 6.012)
-
-[node name="Spike12" parent="." instance=ExtResource("16_h4n0h")]
-position = Vector2(4118, 124)
-scale = Vector2(6.012, 6.012)
-
-[node name="Spike13" parent="." instance=ExtResource("16_h4n0h")]
-position = Vector2(4142, 124)
-scale = Vector2(6.012, 6.012)
 
 [node name="Spawns" type="Node2D" parent="."]
 
