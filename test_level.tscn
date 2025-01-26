@@ -1,10 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://bx0wv0v3vry1g"]
+[gd_scene load_steps=30 format=3 uid="uid://bx0wv0v3vry1g"]
 
 [ext_resource type="Texture2D" uid="uid://b5wtv01tyo3j4" path="res://Graphics/Environment/floor.png" id="1_1oit4"]
 [ext_resource type="Texture2D" uid="uid://bo3787pwvyd7k" path="res://Graphics/Environment/cliff.png" id="1_wchn6"]
 [ext_resource type="Texture2D" uid="uid://c88673ptg60gh" path="res://Graphics/Environment/cliffside.png" id="2_08125"]
 [ext_resource type="Texture2D" uid="uid://dbecqeaeq3nea" path="res://Graphics/Objects/Goat/goat_1.png" id="2_pynb4"]
 [ext_resource type="Texture2D" uid="uid://j8mui5lgxy87" path="res://Graphics/Objects/Goat/goat_2.png" id="3_g651h"]
+[ext_resource type="Texture2D" uid="uid://wxfp2qhqge24" path="res://Graphics/Environment/pillars.png" id="4_4yper"]
 [ext_resource type="Texture2D" uid="uid://dw2qy1eybkim2" path="res://Graphics/Objects/Goat/goat_3.png" id="4_wpk02"]
 [ext_resource type="Texture2D" uid="uid://i42hcyuckvkn" path="res://Graphics/Objects/Goat/goat_4.png" id="5_jwuhd"]
 [ext_resource type="Texture2D" uid="uid://bwefad66iaqwv" path="res://Graphics/Objects/Goat/goat_5.png" id="6_3u6wr"]
@@ -115,6 +116,11 @@ scale = Vector2(6.01172, 6.01172)
 [node name="Cliff" type="Sprite2D" parent="Cliff"]
 texture_filter = 1
 texture = ExtResource("1_wchn6")
+
+[node name="Pillars" type="Sprite2D" parent="Cliff"]
+texture_filter = 1
+position = Vector2(225, -3)
+texture = ExtResource("4_4yper")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cliff"]
 position = Vector2(-209.84, 48.7381)
