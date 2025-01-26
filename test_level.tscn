@@ -1,9 +1,73 @@
-[gd_scene load_steps=3 format=3 uid="uid://bx0wv0v3vry1g"]
+[gd_scene load_steps=22 format=3 uid="uid://bx0wv0v3vry1g"]
+
+[ext_resource type="Texture2D" uid="uid://bo3787pwvyd7k" path="res://Graphics/Environment/cliff.png" id="1_wchn6"]
+[ext_resource type="Texture2D" uid="uid://dbecqeaeq3nea" path="res://Graphics/Objects/Goat/goat_1.png" id="2_pynb4"]
+[ext_resource type="Texture2D" uid="uid://j8mui5lgxy87" path="res://Graphics/Objects/Goat/goat_2.png" id="3_g651h"]
+[ext_resource type="Texture2D" uid="uid://dw2qy1eybkim2" path="res://Graphics/Objects/Goat/goat_3.png" id="4_wpk02"]
+[ext_resource type="Texture2D" uid="uid://i42hcyuckvkn" path="res://Graphics/Objects/Goat/goat_4.png" id="5_jwuhd"]
+[ext_resource type="Texture2D" uid="uid://bwefad66iaqwv" path="res://Graphics/Objects/Goat/goat_5.png" id="6_3u6wr"]
+[ext_resource type="Texture2D" uid="uid://yfxkaehrwtrc" path="res://Graphics/Objects/speech_bubble.png" id="7_fs7d2"]
+[ext_resource type="Script" path="res://speech_bubble.gd" id="8_aa8td"]
+[ext_resource type="Theme" uid="uid://regkol5ptxlq" path="res://Themes/text.tres" id="8_yll50"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v4fum"]
 size = Vector2(2000, 20)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_q30cy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81mya"]
+size = Vector2(84.8344, 31.4386)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_jdm0t"]
+a = Vector2(-10.6459, 20.2937)
+b = Vector2(-18.6303, 40.2547)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_va617"]
+a = Vector2(-2.49512, 33.7674)
+b = Vector2(-29.6088, 33.7674)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_y1ota"]
+a = Vector2(8.98247, -1.82977)
+b = Vector2(-4.49123, 8.31709)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrcak"]
+size = Vector2(55.245, 78.6797)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ocueo"]
+a = Vector2(46.243, -15.3034)
+b = Vector2(59.384, -15.3034)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_nvrjx"]
+a = Vector2(49.4035, -14.6381)
+b = Vector2(57.3879, -5.9883)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g6tyb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pynb4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_g651h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wpk02")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jwuhd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3u6wr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 11.0
+}]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_1kdlh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cqd1n"]
+size = Vector2(53.3087, 284.861)
 
 [node name="TestLevel" type="Node2D"]
 
@@ -17,3 +81,79 @@ shape = SubResource("RectangleShape2D_v4fum")
 position = Vector2(-1.62125e-05, -1.90735e-06)
 scale = Vector2(2000, 20)
 texture = SubResource("PlaceholderTexture2D_q30cy")
+
+[node name="Cliff" type="StaticBody2D" parent="."]
+position = Vector2(1137, 187)
+scale = Vector2(6.01172, 6.01172)
+
+[node name="Cliff" type="Sprite2D" parent="Cliff"]
+texture_filter = 1
+texture = ExtResource("1_wchn6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cliff"]
+position = Vector2(-46.9084, 50.5679)
+shape = SubResource("RectangleShape2D_81mya")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Cliff"]
+position = Vector2(-8.81612, 23.6205)
+shape = SubResource("SegmentShape2D_jdm0t")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Cliff"]
+position = Vector2(0, 0.15)
+shape = SubResource("SegmentShape2D_va617")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Cliff"]
+position = Vector2(-15.9688, 36.0962)
+shape = SubResource("SegmentShape2D_y1ota")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Cliff"]
+position = Vector2(84.6582, 24.2027)
+shape = SubResource("RectangleShape2D_wrcak")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Cliff"]
+position = Vector2(1.49708, 1.66341)
+shape = SubResource("SegmentShape2D_ocueo")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Cliff"]
+shape = SubResource("SegmentShape2D_nvrjx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1592, 380)
+scale = Vector2(2.53125, 2.53125)
+sprite_frames = SubResource("SpriteFrames_g6tyb")
+frame_progress = 0.168696
+
+[node name="SpeechBubble" type="Sprite2D" parent="AnimatedSprite2D"]
+position = Vector2(-41.4815, -35.1605)
+scale = Vector2(2.306, 2.306)
+texture = ExtResource("7_fs7d2")
+script = ExtResource("8_aa8td")
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatedSprite2D/SpeechBubble"]
+position = Vector2(0.513966, 0.856594)
+scale = Vector2(0.171322, 0.143406)
+texture = SubResource("CanvasTexture_1kdlh")
+
+[node name="Label" type="Label" parent="AnimatedSprite2D/SpeechBubble/Sprite2D"]
+offset_left = -168.0
+offset_top = -191.0
+offset_right = -7.0
+theme = ExtResource("8_yll50")
+text = "Press the right stick up to shoot a bubble upwards"
+autowrap_mode = 2
+
+[node name="Timer" type="Timer" parent="AnimatedSprite2D/SpeechBubble"]
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D/SpeechBubble"]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/SpeechBubble/Area2D"]
+position = Vector2(-77.6789, 13.0203)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_cqd1n")
+
+[connection signal="timeout" from="AnimatedSprite2D/SpeechBubble/Timer" to="AnimatedSprite2D/SpeechBubble" method="_on_timer_timeout"]
+[connection signal="body_entered" from="AnimatedSprite2D/SpeechBubble/Area2D" to="AnimatedSprite2D/SpeechBubble" method="_on_area_2d_body_entered"]

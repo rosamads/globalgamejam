@@ -109,9 +109,15 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		last_dir = direction
 		if direction * velocity.x >= 0:
-			velocity.x = move_toward(velocity.x, direction * TOP_SPEED, ACCEL * delta)
+			if is_on_floor():
+				velocity.x = move_toward(velocity.x, direction * TOP_SPEED, ACCEL * delta)
+			else:
+				velocity.x = move_toward(velocity.x, direction * TOP_SPEED, ACCEL * delta)
 		else:
-			velocity.x = move_toward(velocity.x, direction * TOP_SPEED, ACCEL * TURN_AROUND_MULTIPLIER * delta)
+			if is_on_floor():
+				velocity.x = move_toward(velocity.x, direction * TOP_SPEED, ACCEL * TURN_AROUND_MULTIPLIER * delta)
+			else:
+				velocity.x = move_toward(velocity.x, direction * TOP_SPEED, ACCEL * TURN_AROUND_MULTIPLIER * delta)
 
 		
 		if animation_playing < 1 and is_on_floor():

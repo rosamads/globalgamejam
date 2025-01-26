@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://duhgwgqbvxd11"]
+[gd_scene load_steps=6 format=3 uid="uid://duhgwgqbvxd11"]
 
 [ext_resource type="Script" path="res://Scripts/base.gd" id="1_a2tob"]
 [ext_resource type="PackedScene" uid="uid://b0q4qna0bdrrh" path="res://player.tscn" id="1_xlit0"]
@@ -10,12 +10,15 @@
 script = ExtResource("1_a2tob")
 
 [node name="Player" parent="." instance=ExtResource("1_xlit0")]
+z_index = 1
 
 [node name="TestLevel" parent="." instance=ExtResource("2_i8bcu")]
+position = Vector2(-349, 1)
 
 [node name="MainCam" type="Camera2D" parent="."]
 
 [node name="Menu" type="CenterContainer" parent="MainCam"]
+z_index = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
