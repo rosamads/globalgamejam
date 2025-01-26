@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bx0wv0v3vry1g"]
+[gd_scene load_steps=37 format=3 uid="uid://bx0wv0v3vry1g"]
 
 [ext_resource type="Texture2D" uid="uid://b5wtv01tyo3j4" path="res://Graphics/Environment/floor.png" id="1_1oit4"]
 [ext_resource type="Texture2D" uid="uid://bo3787pwvyd7k" path="res://Graphics/Environment/cliff.png" id="1_wchn6"]
@@ -13,12 +13,14 @@
 [ext_resource type="Texture2D" uid="uid://cmfkgfgguf5k7" path="res://Graphics/Environment/spikes.png" id="6_24oe5"]
 [ext_resource type="Texture2D" uid="uid://yfxkaehrwtrc" path="res://Graphics/Objects/speech_bubble.png" id="7_fs7d2"]
 [ext_resource type="Texture2D" uid="uid://b3km6b7ciyn7l" path="res://Graphics/Environment/pit.png" id="7_h0gbg"]
+[ext_resource type="Texture2D" uid="uid://cxo3gyc33clyk" path="res://Graphics/Environment/tower2.png" id="8_44nu2"]
 [ext_resource type="Script" path="res://speech_bubble.gd" id="8_aa8td"]
 [ext_resource type="Theme" uid="uid://regkol5ptxlq" path="res://Themes/text.tres" id="8_yll50"]
 [ext_resource type="Script" path="res://goat.gd" id="9_e35j0"]
 [ext_resource type="Texture2D" uid="uid://bf6jtlnfkumec" path="res://Graphics/Environment/death.png" id="10_s3md1"]
 [ext_resource type="Script" path="res://death_plane.gd" id="12_wm2pv"]
 [ext_resource type="PackedScene" uid="uid://bb7itw8sn27ka" path="res://spike.tscn" id="16_h4n0h"]
+[ext_resource type="Texture2D" uid="uid://gq7378nom73o" path="res://Graphics/Environment/tower.png" id="21_2rc5n"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_q30cy"]
 
@@ -176,9 +178,20 @@ position = Vector2(5194, 163)
 scale = Vector2(6.012, 6.012)
 texture = ExtResource("7_h0gbg")
 
+[node name="Tower" type="Sprite2D" parent="Mesa"]
+texture_filter = 1
+position = Vector2(6546, -618)
+scale = Vector2(6.012, 6.012)
+texture = ExtResource("21_2rc5n")
+
+[node name="Tower2" type="Sprite2D" parent="Mesa"]
+texture_filter = 1
+position = Vector2(6546, 151)
+scale = Vector2(6.012, 6.012)
+texture = ExtResource("8_44nu2")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mesa"]
 position = Vector2(4358.5, 153)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_mptip")
 
 [node name="Goat" type="AnimatedSprite2D" parent="."]
