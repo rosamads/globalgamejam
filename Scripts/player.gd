@@ -3,6 +3,7 @@ extends CharacterBody2D
 signal spawn_bubble(position: Vector2, velocity: Vector2)
 
 @onready var sprite = $AnimatedSprite2D
+@onready var jump_sfx = $JumpSound
 var bubble_ready = false
 var animation_playing = 0
 
@@ -35,8 +36,10 @@ func _physics_process(delta: float) -> void:
 		sprite.play("attack")
 		animation_playing = animation_playing + 1
 		if last_dir < 0:
+			sprite.flip_h = true
 			spawn_bubble.emit(position, velocity + Vector2(-BUBBLE_VEL_SLOW,-BUBBLE_VEL_OFFSET))
 		else:
+			sprite.flip_h = false
 			spawn_bubble.emit(position, velocity + Vector2(BUBBLE_VEL_SLOW,-BUBBLE_VEL_OFFSET))
 		bubbled = true
 	if Input.is_action_just_pressed("aim_down") and not bubbled and not animation_playing:
@@ -44,8 +47,10 @@ func _physics_process(delta: float) -> void:
 		sprite.play("attack")
 		animation_playing = animation_playing + 1
 		if last_dir < 0:
+			sprite.flip_h = true
 			spawn_bubble.emit(position, velocity + Vector2(-BUBBLE_VEL_SLOW,BUBBLE_VEL_OFFSET))
 		else:
+			sprite.flip_h = false
 			spawn_bubble.emit(position, velocity + Vector2(BUBBLE_VEL_SLOW,BUBBLE_VEL_OFFSET))
 		bubbled = true
 	if Input.is_action_just_pressed("aim_left") and not bubbled and not animation_playing:
@@ -100,6 +105,7 @@ func _physics_process(delta: float) -> void:
 			animation_playing = animation_playing + 1
 			sprite.speed_scale = 1
 			sprite.play("jump")
+		jump_sfx.play()
 		jump_buffered = false
 		can_yote = false
 		velocity.y = JUMP_VELOCITY

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b0q4qna0bdrrh"]
+[gd_scene load_steps=25 format=3 uid="uid://b0q4qna0bdrrh"]
 
 [ext_resource type="Texture2D" uid="uid://d0mr3gnoxevd6" path="res://Graphics/Character/Idle/player.png" id="1_6nyc0"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_c2nyo"]
@@ -16,6 +16,11 @@
 [ext_resource type="Texture2D" uid="uid://bb7bk133m2lj7" path="res://Graphics/Character/Running/walk_4.png" id="8_7kplj"]
 [ext_resource type="Texture2D" uid="uid://dycnnfdewnkcy" path="res://Graphics/Character/Air/jump.png" id="10_eolu4"]
 [ext_resource type="Texture2D" uid="uid://c71hqjt6wqc5c" path="res://Graphics/Character/Air/jump_1.png" id="11_34nqg"]
+[ext_resource type="AudioStream" uid="uid://dlujqfiwcjpqx" path="res://Sounds/Player/jump1.wav" id="17_uu65u"]
+[ext_resource type="AudioStream" uid="uid://dws1ct7jkdj03" path="res://Sounds/Player/jump2.wav" id="18_gw87n"]
+[ext_resource type="AudioStream" uid="uid://3m4re221ptxj" path="res://Sounds/Player/jump3.wav" id="19_natry"]
+[ext_resource type="AudioStream" uid="uid://b0wobbs3oevmd" path="res://Sounds/Player/jump4.wav" id="20_nv07r"]
+[ext_resource type="AudioStream" uid="uid://nqpyuj0aa0jd" path="res://Sounds/Player/jump5.wav" id="21_cy5x6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y52w3"]
 animations = [{
@@ -99,6 +104,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwkfr"]
 size = Vector2(53, 119)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_restt"]
+streams_count = 5
+stream_0/stream = ExtResource("17_uu65u")
+stream_1/stream = ExtResource("18_gw87n")
+stream_2/stream = ExtResource("19_natry")
+stream_3/stream = ExtResource("20_nv07r")
+stream_4/stream = ExtResource("21_cy5x6")
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 5
@@ -118,6 +131,9 @@ shape = SubResource("RectangleShape2D_wwkfr")
 [node name="JumpBuffTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_restt")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="JumpBuffTimer" to="." method="_on_jump_buff_timer_timeout"]
