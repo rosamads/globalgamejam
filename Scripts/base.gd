@@ -39,9 +39,6 @@ func _process(delta: float) -> void:
 		var look_ahead_x = player.position.x + (x_dir * look_ahead_multiplier)
 		maincam.position.x = move_toward(maincam.position.x,
 			look_ahead_x, abs(player.velocity.x) * cam_move_multiplier * delta)
-	elif abs(player.position.x - maincam.position.x) > 200:
-		maincam.position.x = move_toward(maincam.position.x,
-			player.position.x, cam_reset_speed * delta * too_far_multiplier)
 	else:
 		maincam.position.x = move_toward(maincam.position.x,
 			player.position.x, cam_reset_speed * delta)
@@ -51,13 +48,14 @@ func _process(delta: float) -> void:
 		var y_dir = 1 if player.velocity.y > 0 else -1
 		var look_ahead_y = player.position.y + (y_dir * look_ahead_multiplier)
 		maincam.position.y = move_toward(maincam.position.y,
-			look_ahead_y, abs(player.velocity.y) * cam_move_multiplier * delta)
-	elif abs(player.position.x - maincam.position.x) > 1000:
-		maincam.position.y = move_toward(maincam.position.y,
-			player.position.y - 70, cam_reset_speed * delta * too_far_multiplier)
+			look_ahead_y + 50, abs(player.velocity.y) * cam_move_multiplier * delta)
 	else:
 		maincam.position.y = move_toward(maincam.position.y,
-			player.position.y - 70, cam_reset_speed * delta)
+			player.position.y + 50, cam_reset_speed * delta)
+			
+	if player.position.distance_to(maincam.position) > 350:
+		maincam.position = maincam.position.move_toward(
+			player.position, cam_reset_speed * delta * too_far_multiplier)
 
 func _spawn_bubble(position, velocity):
 	var instance = bubble_tscn.instantiate()
