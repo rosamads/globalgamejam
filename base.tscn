@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://duhgwgqbvxd11"]
+[gd_scene load_steps=8 format=3 uid="uid://duhgwgqbvxd11"]
 
 [ext_resource type="Script" path="res://Scripts/base.gd" id="1_a2tob"]
 [ext_resource type="PackedScene" uid="uid://b0q4qna0bdrrh" path="res://player.tscn" id="1_xlit0"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b2t1ig1p0mdiv" path="res://parallax.tscn" id="4_rvshl"]
 [ext_resource type="Texture2D" uid="uid://d0mr3gnoxevd6" path="res://Graphics/Character/Idle/player.png" id="4_vg8f2"]
 [ext_resource type="AudioStream" uid="uid://dkchg2bs75x2n" path="res://Sounds/menu_select.wav" id="5_tl3s7"]
+[ext_resource type="AudioStream" uid="uid://4ilfsotstgna" path="res://Sounds/pepper_song_2loop.wav" id="7_t18gb"]
 
 [node name="Base" type="Node"]
 script = ExtResource("1_a2tob")
@@ -64,3 +65,7 @@ text = "Jamie Pothier for epic pro gamer of the year 2025"
 [node name="Entites" type="Node" parent="."]
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("4_rvshl")]
+
+[node name="Musicbox" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_t18gb")
+autoplay = true
