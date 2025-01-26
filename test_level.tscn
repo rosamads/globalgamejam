@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bx0wv0v3vry1g"]
+[gd_scene load_steps=50 format=3 uid="uid://bx0wv0v3vry1g"]
 
 [ext_resource type="Texture2D" uid="uid://b5wtv01tyo3j4" path="res://Graphics/Environment/floor.png" id="1_1oit4"]
 [ext_resource type="Texture2D" uid="uid://bo3787pwvyd7k" path="res://Graphics/Environment/cliff.png" id="1_wchn6"]
@@ -67,6 +67,21 @@ size = Vector2(840, 872)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ya2xg"]
 size = Vector2(69.0793, 629.883)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ttit"]
+size = Vector2(1095, 1217)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6m0yy"]
+size = Vector2(502, 750)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aphfd"]
+size = Vector2(584, 1071)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqr8f"]
+size = Vector2(819, 114)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cd7cw"]
+size = Vector2(342, 1554)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_g6tyb"]
 animations = [{
 "frames": [{
@@ -106,8 +121,11 @@ distance = 110.996
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2rsio"]
 size = Vector2(37, 114)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfadf"]
+size = Vector2(539, 276)
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_adnjb"]
-distance = 601.7
+distance = 128.0
 
 [node name="TestLevel" type="Node2D"]
 
@@ -267,6 +285,26 @@ position = Vector2(5194.35, -623.232)
 scale = Vector2(6.012, 6.012)
 texture = ExtResource("8_j2yeq")
 
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Mesa"]
+position = Vector2(5323.5, -698.5)
+shape = SubResource("RectangleShape2D_3ttit")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Mesa"]
+position = Vector2(5960, 519)
+shape = SubResource("RectangleShape2D_6m0yy")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Mesa"]
+position = Vector2(6119, -733.5)
+shape = SubResource("RectangleShape2D_aphfd")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Mesa"]
+position = Vector2(6812.5, -1000)
+shape = SubResource("RectangleShape2D_wqr8f")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Mesa"]
+position = Vector2(7051, 117)
+shape = SubResource("RectangleShape2D_cd7cw")
+
 [node name="Goat" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(1592, 380)
@@ -413,10 +451,20 @@ collision_mask = 0
 position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_2rsio")
 
+[node name="Area2D2" type="Area2D" parent="Spawns"]
+position = Vector2(4421, 60)
+collision_layer = 512
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawns/Area2D2"]
+position = Vector2(81.5, -52)
+shape = SubResource("RectangleShape2D_gfadf")
+
 [node name="Ceiling" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
-position = Vector2(6417, -347)
+position = Vector2(6464, -1099)
+rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_adnjb")
 
 [connection signal="timeout" from="Goat/SpeechBubble/Timer" to="Goat/SpeechBubble" method="_on_timer_timeout"]
