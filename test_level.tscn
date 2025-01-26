@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bx0wv0v3vry1g"]
+[gd_scene load_steps=40 format=3 uid="uid://bx0wv0v3vry1g"]
 
 [ext_resource type="Texture2D" uid="uid://b5wtv01tyo3j4" path="res://Graphics/Environment/floor.png" id="1_1oit4"]
 [ext_resource type="Texture2D" uid="uid://bo3787pwvyd7k" path="res://Graphics/Environment/cliff.png" id="1_wchn6"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bwefad66iaqwv" path="res://Graphics/Objects/Goat/goat_5.png" id="6_3u6wr"]
 [ext_resource type="Texture2D" uid="uid://cmfkgfgguf5k7" path="res://Graphics/Environment/spikes.png" id="6_24oe5"]
 [ext_resource type="Texture2D" uid="uid://yfxkaehrwtrc" path="res://Graphics/Objects/speech_bubble.png" id="7_fs7d2"]
+[ext_resource type="Texture2D" uid="uid://b3km6b7ciyn7l" path="res://Graphics/Environment/pit.png" id="7_h0gbg"]
 [ext_resource type="Script" path="res://speech_bubble.gd" id="8_aa8td"]
 [ext_resource type="Theme" uid="uid://regkol5ptxlq" path="res://Themes/text.tres" id="8_yll50"]
 [ext_resource type="Script" path="res://goat.gd" id="9_e35j0"]
@@ -55,10 +56,10 @@ size = Vector2(44.0806, 92.1533)
 size = Vector2(72.8576, 65.5387)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mptip"]
-size = Vector2(654, 18)
+size = Vector2(989, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t0nik"]
-size = Vector2(504, 871)
+size = Vector2(840, 872)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ya2xg"]
 size = Vector2(69.0793, 629.883)
@@ -192,12 +193,18 @@ position = Vector2(3842, 169)
 scale = Vector2(6.012, 6.012)
 texture = ExtResource("6_24oe5")
 
+[node name="Pit" type="Sprite2D" parent="Mesa"]
+texture_filter = 1
+position = Vector2(5194, 163)
+scale = Vector2(6.012, 6.012)
+texture = ExtResource("7_h0gbg")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mesa"]
-position = Vector2(4191, 153)
+position = Vector2(4358.5, 153)
 shape = SubResource("RectangleShape2D_mptip")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Mesa"]
-position = Vector2(4265, 598.5)
+position = Vector2(4433, 598)
 shape = SubResource("RectangleShape2D_t0nik")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Mesa"]
