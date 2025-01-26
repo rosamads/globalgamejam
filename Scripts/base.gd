@@ -19,6 +19,7 @@ func _ready() -> void:
 	entities = $Entites
 	
 	player.spawn_bubble.connect(_spawn_bubble)
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

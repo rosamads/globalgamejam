@@ -1,12 +1,50 @@
-[gd_scene load_steps=8 format=3 uid="uid://duhgwgqbvxd11"]
+[gd_scene load_steps=12 format=3 uid="uid://duhgwgqbvxd11"]
 
 [ext_resource type="Script" path="res://Scripts/base.gd" id="1_a2tob"]
 [ext_resource type="PackedScene" uid="uid://b0q4qna0bdrrh" path="res://player.tscn" id="1_xlit0"]
 [ext_resource type="PackedScene" uid="uid://bx0wv0v3vry1g" path="res://test_level.tscn" id="2_i8bcu"]
 [ext_resource type="PackedScene" uid="uid://b2t1ig1p0mdiv" path="res://parallax.tscn" id="4_rvshl"]
 [ext_resource type="Texture2D" uid="uid://d0mr3gnoxevd6" path="res://Graphics/Character/Idle/player.png" id="4_vg8f2"]
+[ext_resource type="FontFile" uid="uid://c8knkfeykanea" path="res://Graphics/SourGummy_Expanded-Regular.ttf" id="5_o1s82"]
 [ext_resource type="AudioStream" uid="uid://dkchg2bs75x2n" path="res://Sounds/menu_select.wav" id="5_tl3s7"]
 [ext_resource type="AudioStream" uid="uid://4ilfsotstgna" path="res://Sounds/pepper_song_2loop.wav" id="7_t18gb"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_s6824"]
+color = Color(0.831373, 0.203922, 0.427451, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wsulk"]
+bg_color = Color(0.647059, 0.0156863, 0.568627, 0.576471)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.151496, 0.0596518, 0.216279, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="Theme" id="Theme_4vo1x"]
+HSeparator/constants/separation = 0
+HSeparator/styles/separator = SubResource("StyleBoxLine_s6824")
+Label/colors/font_color = Color(0.890196, 1, 1, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 1)
+Label/constants/line_spacing = 0
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 0
+Label/constants/shadow_offset_y = 0
+Label/constants/shadow_outline_size = 0
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("5_o1s82")
+Label/styles/normal = null
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_wsulk")
 
 [node name="Base" type="Node"]
 script = ExtResource("1_a2tob")
@@ -20,7 +58,7 @@ position = Vector2(-349, 1)
 [node name="MainCam" type="Camera2D" parent="."]
 
 [node name="Menu" type="CenterContainer" parent="MainCam"]
-z_index = 2
+z_index = 100
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -30,31 +68,43 @@ grow_horizontal = 2
 grow_vertical = 2
 use_top_left = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainCam/Menu"]
+[node name="MenuSelectSound" type="AudioStreamPlayer" parent="MainCam/Menu"]
+stream = ExtResource("5_tl3s7")
+
+[node name="PanelContainer" type="PanelContainer" parent="MainCam/Menu"]
+layout_mode = 2
+theme = SubResource("Theme_4vo1x")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainCam/Menu/PanelContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MainCam/Menu/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MainCam/Menu/PanelContainer/VBoxContainer"]
 layout_mode = 2
 texture = ExtResource("4_vg8f2")
 
-[node name="Title" type="Label" parent="MainCam/Menu/VBoxContainer"]
+[node name="Title" type="Label" parent="MainCam/Menu/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Welcome to bubble game yippie"
 horizontal_alignment = 1
 
-[node name="Instructions" type="Label" parent="MainCam/Menu/VBoxContainer"]
+[node name="Instructions" type="Label" parent="MainCam/Menu/PanelContainer/VBoxContainer"]
 layout_mode = 2
-text = "Press start to toggle menu text, select to quit"
+text = "Press start to toggle menu text
+Press select to quit
+L-stick or D-pad to move
+Tap R-stick up/down/left/right to throw bubbles
+Press A/Cross to jump"
 horizontal_alignment = 1
 
-[node name="Controls" type="Label" parent="MainCam/Menu/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MainCam/Menu/PanelContainer/VBoxContainer"]
 layout_mode = 2
-text = "L-stick or dpad to move, tap R-stick up/down/left/right to throw bubble, A/Cross to jump"
-horizontal_alignment = 1
 
-[node name="MenuSelectSound" type="AudioStreamPlayer" parent="MainCam/Menu"]
-stream = ExtResource("5_tl3s7")
+[node name="Credit" type="Label" parent="MainCam/Menu/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Made by
+Rosa Huskins & Jamie Pothier"
+horizontal_alignment = 1
 
 [node name="MyGame" type="Label" parent="MainCam"]
 visible = false
