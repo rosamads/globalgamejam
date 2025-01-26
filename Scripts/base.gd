@@ -4,6 +4,7 @@ extends Node
 const cam_move_multiplier = 1.2
 const cam_reset_speed = 25
 const look_ahead_multiplier = 100
+const too_far_multiplier = 1000
 
 var maincam: Camera2D
 var player: CharacterBody2D
@@ -37,6 +38,9 @@ func _process(delta: float) -> void:
 		var look_ahead_x = player.position.x + (x_dir * look_ahead_multiplier)
 		maincam.position.x = move_toward(maincam.position.x,
 			look_ahead_x, abs(player.velocity.x) * cam_move_multiplier * delta)
+	elif abs(player.position.x - maincam.position.x) > 200:
+		maincam.position.x = move_toward(maincam.position.x,
+			player.position.x, cam_reset_speed * delta * too_far_multiplier)
 	else:
 		maincam.position.x = move_toward(maincam.position.x,
 			player.position.x, cam_reset_speed * delta)
@@ -47,6 +51,9 @@ func _process(delta: float) -> void:
 		var look_ahead_y = player.position.y + (y_dir * look_ahead_multiplier)
 		maincam.position.y = move_toward(maincam.position.y,
 			look_ahead_y, abs(player.velocity.y) * cam_move_multiplier * delta)
+	elif abs(player.position.x - maincam.position.x) > 1000:
+		maincam.position.y = move_toward(maincam.position.y,
+			player.position.y - 70, cam_reset_speed * delta * too_far_multiplier)
 	else:
 		maincam.position.y = move_toward(maincam.position.y,
 			player.position.y - 70, cam_reset_speed * delta)

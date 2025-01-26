@@ -26,10 +26,10 @@ scale = Vector2(6.0616, 5.53227)
 texture = ExtResource("2_io1ri")
 
 [node name="Trees" type="ParallaxLayer" parent="."]
-motion_mirroring = Vector2(2500, 0)
+motion_mirroring = Vector2(2800, 0)
 
 [node name="PalmTrees" type="Sprite2D" parent="Trees"]
 texture_filter = 1
-position = Vector2(-636, 117)
+position = Vector2(-905, 117)
 scale = Vector2(4.32721, 4.32721)
 texture = ExtResource("3_xhl0i")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b0q4qna0bdrrh"]
+[gd_scene load_steps=30 format=3 uid="uid://b0q4qna0bdrrh"]
 
 [ext_resource type="Texture2D" uid="uid://d0mr3gnoxevd6" path="res://Graphics/Character/Idle/player.png" id="1_6nyc0"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_c2nyo"]
@@ -25,6 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://3m4re221ptxj" path="res://Sounds/Player/jump3.wav" id="19_natry"]
 [ext_resource type="AudioStream" uid="uid://b0wobbs3oevmd" path="res://Sounds/Player/jump4.wav" id="20_nv07r"]
 [ext_resource type="AudioStream" uid="uid://nqpyuj0aa0jd" path="res://Sounds/Player/jump5.wav" id="21_cy5x6"]
+[ext_resource type="AudioStream" uid="uid://wbqjn01x4dnm" path="res://Sounds/Bubble/pop5.wav" id="26_al1y4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y52w3"]
 animations = [{
@@ -49,7 +50,7 @@ animations = [{
 "speed": 16.0
 }, {
 "frames": [{
-"duration": 2.6,
+"duration": 1.7,
 "texture": ExtResource("7_0b5u3")
 }, {
 "duration": 1.0,
@@ -58,10 +59,10 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("9_84xph")
 }, {
-"duration": 1.2,
+"duration": 0.9,
 "texture": ExtResource("10_wxe3a")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 10.0
 }, {
@@ -144,7 +145,8 @@ position = Vector2(6, 0)
 scale = Vector2(1.89063, 1.89063)
 sprite_frames = SubResource("SpriteFrames_y52w3")
 animation = &"death"
-frame_progress = 0.0672389
+frame = 3
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4.5, 0.5)
@@ -154,8 +156,16 @@ shape = SubResource("RectangleShape2D_wwkfr")
 wait_time = 0.5
 one_shot = true
 
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 0.45
+one_shot = true
+
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_restt")
 
+[node name="PopSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("26_al1y4")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="JumpBuffTimer" to="." method="_on_jump_buff_timer_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

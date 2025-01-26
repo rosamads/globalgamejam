@@ -4,8 +4,10 @@ signal spawn_bubble(position: Vector2, velocity: Vector2)
 
 @onready var sprite = $AnimatedSprite2D
 @onready var jump_sfx = $JumpSound
+@onready var pop_sfx = $PopSound
 var bubble_ready = false
 var animation_playing = 0
+var can_control = true
 
 const ACCEL = 1000
 const FRICTION = 1000
@@ -30,11 +32,15 @@ func _ready() -> void:
 	jump_buff_timer = $JumpBuffTimer
 
 func _physics_process(delta: float) -> void:
+	#disable control if needed
+	if not can_control:
+		return
 	#bubbles
 	if Input.is_action_just_pressed("aim_up") and not bubbled and not animation_playing:
 		sprite.speed_scale = 1
-		sprite.play("attack")
 		animation_playing = animation_playing + 1
+		if animation_playing < 2:
+			sprite.play("attack")
 		if last_dir < 0:
 			sprite.flip_h = true
 			spawn_bubble.emit(position, velocity + Vector2(-BUBBLE_VEL_SLOW,-BUBBLE_VEL_OFFSET))
@@ -44,8 +50,9 @@ func _physics_process(delta: float) -> void:
 		bubbled = true
 	if Input.is_action_just_pressed("aim_down") and not bubbled and not animation_playing:
 		sprite.speed_scale = 1
-		sprite.play("attack")
 		animation_playing = animation_playing + 1
+		if animation_playing < 2:
+			sprite.play("attack")
 		if last_dir < 0:
 			sprite.flip_h = true
 			spawn_bubble.emit(position, velocity + Vector2(-BUBBLE_VEL_SLOW,BUBBLE_VEL_OFFSET))
@@ -58,8 +65,9 @@ func _physics_process(delta: float) -> void:
 		sprite.flip_h = true
 		last_dir = -1
 		sprite.offset.x = -4
-		sprite.play("attack")
 		animation_playing = animation_playing + 1
+		if animation_playing < 2:
+			sprite.play("attack")
 		spawn_bubble.emit(position, velocity + Vector2(-BUBBLE_VEL_FAST,0))
 		bubbled = true
 	if Input.is_action_just_pressed("aim_right") and not bubbled and not animation_playing:
@@ -67,8 +75,9 @@ func _physics_process(delta: float) -> void:
 		sprite.flip_h = false
 		last_dir = 1
 		sprite.offset.x = 0
-		sprite.play("attack")
 		animation_playing = animation_playing + 1
+		if animation_playing < 2:
+			sprite.play("attack")
 		spawn_bubble.emit(position, velocity + Vector2(BUBBLE_VEL_FAST,0))
 		bubbled = true
 	if not (Input.is_action_pressed("aim_up") or
@@ -147,6 +156,13 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+func pop_self():
+	pop_sfx.play()
+	can_control = false
+	sprite.speed_scale = 1
+	sprite.play("death")
+	$DeathTimer.start()
+	animation_playing += 1
 
 func _on_jump_buff_timer_timeout() -> void:
 	jump_buffered = false
@@ -154,3 +170,8 @@ func _on_jump_buff_timer_timeout() -> void:
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	animation_playing = 0
+
+
+func _on_death_timer_timeout() -> void:
+	position = Vector2(0,0)
+	can_control = true
